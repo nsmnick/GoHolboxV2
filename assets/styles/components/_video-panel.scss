@@ -1,0 +1,19 @@
+.video-panel {
+    padding: 60px 0;
+
+    &__embed {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 12px;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+    }
+}

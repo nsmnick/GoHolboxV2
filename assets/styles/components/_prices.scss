@@ -1,0 +1,508 @@
+// ─── Shared prices page shell ──────────────────────────────────────────────────
+
+.prices-page {
+
+  &__hero {
+    position: relative;
+    height: 340px;
+    background-color: $color-ght-teal;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 30, 70, 0.4) 100%);
+  }
+
+  &__hero-content {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  &__title {
+    color: $color-white;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: to-rem(15);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  // ─── Inline search bar (results page) ──────────────────────────────────────
+
+  &__search-bar {
+    background: $color-ght-dark;
+    padding: 24px 0;
+
+    .search-form--inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .search-form__group {
+      flex: 1 1 160px;
+    }
+
+    .search-form__group--button {
+      flex: 0 0 auto;
+    }
+  }
+
+  // ─── Body ──────────────────────────────────────────────────────────────────
+
+  &__body {
+    padding: 60px 0 80px;
+    background: $color-light-grey;
+  }
+
+  &__container {
+    max-width: 1100px;
+  }
+
+  &__summary {
+    font-size: to-rem(15);
+    color: $color-ght-charcoal;
+    margin: 0 0 32px;
+    padding: 14px 20px;
+    background: $color-white;
+    border-left: 3px solid $color-ght-gold;
+    border-radius: 0 4px 4px 0;
+
+    strong {
+      color: $color-ght-teal;
+    }
+  }
+
+  &__cta {
+    margin-bottom: 40px;
+    font-size: to-rem(15);
+    color: $color-ght-charcoal;
+
+    a {
+      color: $color-ght-teal;
+      font-weight: 600;
+      &:hover { color: $color-ght-gold; }
+    }
+  }
+
+  &__no-results,
+  &__prompt {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: to-rem(16);
+    color: $color-ght-charcoal;
+
+    a {
+      color: $color-ght-teal;
+      font-weight: 600;
+      &:hover { color: $color-ght-gold; }
+    }
+
+    .button { margin-top: 20px; }
+  }
+}
+
+// ─── Price result cards (search results page) ──────────────────────────────────
+
+.price-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  // A single, generous column rather than a multi-up tile grid — search
+  // results are usually one specific route, so let that result take up a
+  // large, easy-to-read portion of the page instead of a small tile.
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.price-card {
+  background: $color-white;
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @include bp(lap) {
+    padding: 40px 44px 36px;
+  }
+
+  &__route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &__location {
+    font-size: to-rem(20);
+    font-weight: 700;
+    color: $color-ght-teal;
+
+    @include bp(lap) {
+      font-size: to-rem(24);
+    }
+  }
+
+  &__arrow {
+    color: $color-ght-gold;
+    font-size: to-rem(20);
+  }
+
+  &__people {
+    font-size: to-rem(12);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: $color-ght-charcoal;
+    margin: 0;
+  }
+
+  // ─── Price breakdown: One Way and Return as separate, clearly labelled
+  // containers side by side, instead of two rows crammed into one table ──
+
+  &__breakdown {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 10px;
+
+    @include bp(tab) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__fare {
+    border-radius: 10px;
+    padding: 18px 20px 16px;
+    border: 1px solid $color-light-grey;
+    border-top: 4px solid transparent;
+
+    &--one-way {
+      border-top-color: $color-ght-gold;
+      background: rgba(230, 175, 42, 0.06);
+    }
+
+    &--return {
+      border-top-color: $color-ght-teal;
+      background: rgba(0, 70, 123, 0.05);
+    }
+  }
+
+  &__fare-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  &__fare-icon {
+    font-size: to-rem(16);
+    line-height: 1;
+
+    .price-card__fare--one-way & {
+      color: $color-ght-gold;
+    }
+
+    .price-card__fare--return & {
+      color: $color-ght-teal;
+    }
+  }
+
+  &__fare-label {
+    font-size: to-rem(13);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-ght-dark;
+  }
+
+  &__fare-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__fare-tax-label {
+    font-size: to-rem(12);
+    color: $color-ght-charcoal;
+  }
+
+  &__fare-amount {
+    font-weight: 700;
+    color: $color-ght-dark;
+    font-size: to-rem(17);
+    white-space: nowrap;
+
+    &--inc {
+      color: $color-ght-teal;
+      font-size: to-rem(19);
+    }
+  }
+
+  &__tax-explainer {
+    font-size: to-rem(12.5);
+    line-height: 1.6;
+    color: $color-ght-charcoal;
+    margin: 4px 0 0;
+
+    strong {
+      color: $color-ght-dark;
+    }
+  }
+
+  &__note {
+    font-size: to-rem(12);
+    color: $color-ght-charcoal;
+    margin: 4px 0 0;
+  }
+
+  &__book-btn {
+    display: block;
+    margin-top: 14px;
+    padding: 10px 16px;
+    background: $color-ght-teal;
+    color: $color-white;
+    font-size: to-rem(12);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $color-ght-gold;
+      color: $color-ght-dark;
+    }
+  }
+}
+
+// ─── Booking form section ─────────────────────────────────────────────────────
+
+.prices-page__booking {
+  margin-top: 52px;
+  border-top: 3px solid $color-ght-gold;
+  padding-top: 44px;
+  scroll-margin-top: 80px;
+}
+
+.prices-page__booking-header {
+  margin-bottom: 32px;
+}
+
+.prices-page__booking-title {
+  font-size: to-rem(24);
+  font-weight: 700;
+  color: $color-ght-dark;
+  margin: 0 0 12px;
+}
+
+.prices-page__booking-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: to-rem(14);
+  color: $color-ght-charcoal;
+  margin: 0;
+}
+
+.prices-page__booking-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  background: $color-ght-teal;
+  color: $color-white;
+  font-size: to-rem(11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-radius: 20px;
+}
+
+.prices-page__booking-price {
+  font-weight: 700;
+  color: $color-ght-teal;
+}
+
+// ─── Booking summary (inside GF field 16) ────────────────────────────────────
+
+.booking-summary-block {
+  background: rgba(0, 70, 123, 0.05);
+  border-left: 3px solid $color-ght-teal;
+  border-radius: 0 4px 4px 0;
+  padding: 16px 20px;
+  font-size: to-rem(14);
+  line-height: 1.6;
+
+  &__row {
+    color: $color-ght-charcoal;
+
+    strong { color: $color-ght-dark; }
+
+    &--total {
+      border-top: 1px solid rgba(0, 70, 123, 0.15);
+      margin-top: 10px;
+      padding-top: 10px;
+      font-size: to-rem(15);
+
+      strong { color: $color-ght-teal; }
+    }
+  }
+}
+
+// ─── Price table (all-prices page) ────────────────────────────────────────────
+
+.price-table-group {
+  margin-bottom: 60px;
+
+  &__heading {
+    font-size: to-rem(22);
+    font-weight: 700;
+    color: $color-ght-dark;
+    margin: 0 0 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  &__label {
+    font-size: to-rem(11);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-ght-gold;
+  }
+
+  &__type {
+    font-size: to-rem(14);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-ght-teal;
+    margin: 28px 0 10px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.price-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  margin-bottom: 20px;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $color-white;
+  font-size: to-rem(13);
+
+  // Main header row (navy background)
+  thead tr:first-child th {
+    background: $color-ght-teal;
+    color: $color-white;
+    font-weight: 700;
+    font-size: to-rem(11);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 14px;
+    text-align: center;
+    white-space: nowrap;
+
+    &.price-table__destination-head {
+      text-align: left;
+      min-width: 160px;
+    }
+  }
+
+  // Sub-header row (ex. / inc. tax labels)
+  &__subhead th {
+    background: rgba(0, 70, 123, 0.08);
+    font-size: to-rem(10);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    color: $color-ght-charcoal;
+    text-align: right;
+    white-space: nowrap;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  &__tax-head {
+    &--inc {
+      color: $color-ght-teal;
+    }
+  }
+
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid $color-light-grey;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.018);
+  }
+
+  &__destination {
+    font-weight: 700;
+    color: $color-ght-dark;
+    min-width: 140px;
+  }
+
+  &__price {
+    text-align: right;
+    white-space: nowrap;
+
+    &--inc {
+      background: rgba(0, 70, 123, 0.04);
+    }
+  }
+
+  &__amount {
+    font-weight: 700;
+    color: $color-ght-charcoal;
+    font-size: to-rem(14);
+
+    &--inc {
+      color: $color-ght-teal;
+    }
+  }
+
+  &__unavailable {
+    color: $color-grey;
+  }
+}

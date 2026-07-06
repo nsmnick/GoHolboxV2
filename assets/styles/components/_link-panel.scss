@@ -1,0 +1,57 @@
+@import "../setup/colors";
+
+.link-panel {
+  padding: 60px 0;
+  text-align: center;
+
+  &__heading {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: $color-ght-teal;
+    margin: 0 0 1.5rem;
+  }
+
+  .button {
+    text-transform: uppercase;
+  }
+
+  //
+  // Colours (Panel Settings > Background Colour)
+  //
+
+  &.bgc-white {
+    background-color: $color-white;
+  }
+
+  &.bgc-light-grey {
+    background-color: $color-light-grey;
+  }
+
+  &.bgc-grey {
+    background-color: $color-grey;
+  }
+
+  &.bgc-gold {
+    background-color: $color-ght-gold;
+  }
+
+  &.bgc-navy,
+  &.bgc-dark,
+  &.bgc-charcoal {
+    .link-panel__heading {
+      color: $color-white;
+    }
+  }
+
+  &.bgc-navy {
+    background-color: $color-ght-teal;
+  }
+
+  &.bgc-dark {
+    background-color: $color-ght-dark;
+  }
+
+  &.bgc-charcoal {
+    background-color: $color-ght-charcoal;
+  }
+}

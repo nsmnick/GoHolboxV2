@@ -1,0 +1,99 @@
+.contact-details-panel {
+  padding: 60px 0;
+
+  @include bp(desk) {
+    padding: 100px 0;
+  }
+
+  &__heading {
+    text-align: center;
+    color: getcolor("ght-teal");
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+
+  &__methods {
+    text-align: center;
+
+    p {
+      font-size: to-rem(20);
+      color: getcolor("dark-grey");
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-transform: uppercase;
+      font-size: to-rem(12);
+      font-weight: 700;
+      color: getcolor("ght-charcoal");
+      margin-bottom: 4px;
+    }
+
+    a {
+      color: getcolor("ght-teal");
+
+      &:hover {
+        color: getcolor("ght-gold");
+      }
+    }
+  }
+
+  &__address {
+    text-align: center;
+    font-size: to-rem(20);
+    color: getcolor("dark-grey");
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      text-transform: uppercase;
+      font-size: to-rem(12);
+      font-weight: 700;
+      color: getcolor("ght-charcoal");
+      margin-bottom: 4px;
+    }
+
+    span {
+      display: block;
+      font-size: to-rem(14);
+      margin-bottom: 8px;
+    }
+  }
+
+  &__maps-link {
+    display: inline-block;
+    color: getcolor("ght-teal");
+    text-decoration: underline;
+    font-size: to-rem(14);
+
+    &:hover {
+      color: getcolor("ght-gold");
+    }
+  }
+
+  &__notice {
+    text-align: center;
+    margin-top: 30px;
+    font-size: to-rem(16);
+    color: getcolor("dark-grey");
+  }
+
+  &__socials {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  &__socials-heading {
+    text-transform: uppercase;
+    font-size: to-rem(12);
+    font-weight: 700;
+    color: getcolor("dark-grey");
+    margin-bottom: 10px;
+  }
+
+  .social-channels {
+    justify-content: center;
+  }
+}
