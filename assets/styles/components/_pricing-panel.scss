@@ -1,0 +1,228 @@
+@import "../setup/colors";
+
+.pricing-panel {
+  padding: 60px 0;
+
+  &__meta {
+    color: $color-ght-gold;
+    font-size: to-rem(13);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+
+  &__heading {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: $color-ght-teal;
+    margin: 0 0 1rem;
+    text-align: center;
+  }
+
+  &__paragraph {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    color: $color-ght-charcoal;
+    line-height: 1.7;
+  }
+
+  //
+  // Colours (Panel Settings > Background Colour)
+  //
+
+  &.bgc-white {
+    background-color: $color-white;
+  }
+
+  &.bgc-light-grey {
+    background-color: $color-light-grey;
+  }
+
+  &.bgc-grey {
+    background-color: $color-grey;
+  }
+
+  &.bgc-gold {
+    background-color: $color-ght-gold;
+  }
+
+  &.bgc-navy {
+    background-color: $color-ght-teal;
+  }
+
+  &.bgc-dark {
+    background-color: $color-ght-dark;
+  }
+
+  &.bgc-charcoal {
+    background-color: $color-ght-charcoal;
+  }
+
+  // Dark backgrounds need the heading/paragraph flipped to light text —
+  // otherwise the default navy/charcoal copy disappears into them. The
+  // cards themselves stay white regardless, same as Table Panel's table.
+  &.bgc-navy,
+  &.bgc-dark,
+  &.bgc-charcoal {
+    .pricing-panel__heading {
+      color: $color-white;
+    }
+
+    .pricing-panel__paragraph {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 420px;
+    margin: 0 auto;
+
+    &--two {
+      @include bp(lap) {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 760px;
+      }
+    }
+
+    &--three {
+      @include bp(lap) {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: none;
+        perspective: 1200px;
+      }
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: $color-white;
+    border: 1px solid $color-light-grey;
+    border-radius: 12px;
+    padding: 32px 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    position: relative;
+    z-index: 1;
+
+    @include bp(lap) {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+    }
+  }
+
+  // On scroll into view (".scrolled" is added by animationsv2.js the same
+  // way it drives "fade-up" etc.), the cards pull in closer together and
+  // overlap slightly instead of sitting flat in the grid — desktop only,
+  // same convention as the other .scrolled reveal animations.
+  &.scrolled {
+    .pricing-panel__grid--three .pricing-panel__card {
+      @include bp(lap) {
+        &:first-child {
+          transform: translateX(36px) scale(0.94) rotateY(-6deg);
+        }
+
+        &:last-child {
+          transform: translateX(-36px) scale(0.94) rotateY(6deg);
+        }
+
+        &:not(:first-child):not(:last-child) {
+          transform: scale(1.04);
+          z-index: 2;
+          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.16);
+        }
+      }
+    }
+
+    .pricing-panel__grid--two .pricing-panel__card {
+      @include bp(lap) {
+        &:first-child {
+          transform: translateX(20px) scale(0.97);
+        }
+
+        &:last-child {
+          transform: translateX(-20px) scale(0.97);
+        }
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__card {
+      transition: none;
+    }
+  }
+
+  &__card-name {
+    font-size: to-rem(13);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-ght-teal;
+    margin: 0 0 12px;
+  }
+
+  &__card-price {
+    font-size: to-rem(32);
+    font-weight: 800;
+    color: $color-ght-dark;
+    margin: 0 0 20px;
+
+    @include bp(lap) {
+      font-size: to-rem(36);
+    }
+  }
+
+  &__card-price-note {
+    display: block;
+    margin-top: 4px;
+    font-size: to-rem(13);
+    font-weight: 400;
+    color: $color-ght-charcoal;
+  }
+
+  &__card-features {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    text-align: left;
+    flex: 1;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid $color-light-grey;
+      color: $color-ght-charcoal;
+      font-size: to-rem(14);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__card-tick {
+    flex-shrink: 0;
+    color: $color-ght-teal;
+    margin-top: 2px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__card-button-wrap {
+    margin-top: auto;
+
+    .button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,162 @@
+@import "../setup/colors";
+
+.comparison-panel {
+  padding: 60px 0;
+
+  &__meta {
+    color: $color-ght-gold;
+    font-size: to-rem(13);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+
+  &__heading {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: $color-ght-teal;
+    margin: 0 0 1rem;
+    text-align: center;
+  }
+
+  &__paragraph {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    color: $color-ght-charcoal;
+    line-height: 1.7;
+  }
+
+  &__wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  }
+
+  //
+  // Colours (Panel Settings > Background Colour)
+  //
+
+  &.bgc-white {
+    background-color: $color-white;
+  }
+
+  &.bgc-light-grey {
+    background-color: $color-light-grey;
+  }
+
+  &.bgc-grey {
+    background-color: $color-grey;
+  }
+
+  &.bgc-gold {
+    background-color: $color-ght-gold;
+  }
+
+  &.bgc-navy {
+    background-color: $color-ght-teal;
+  }
+
+  &.bgc-dark {
+    background-color: $color-ght-dark;
+  }
+
+  &.bgc-charcoal {
+    background-color: $color-ght-charcoal;
+  }
+
+  // Dark backgrounds need the heading/paragraph flipped to light text —
+  // otherwise the default navy/charcoal copy disappears into them.
+  &.bgc-navy,
+  &.bgc-dark,
+  &.bgc-charcoal {
+    .comparison-panel__heading {
+      color: $color-white;
+    }
+
+    .comparison-panel__paragraph {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: $color-white;
+    font-size: to-rem(15);
+
+    @include bp(lap) {
+      font-size: to-rem(16);
+    }
+
+    thead th {
+      background: $color-ght-teal;
+      color: $color-white;
+      font-weight: 700;
+      font-size: to-rem(13);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 14px;
+      text-align: center;
+
+      @include bp(lap) {
+        font-size: to-rem(14);
+      }
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid $color-light-grey;
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  &__price {
+    display: block;
+    margin-top: 6px;
+    font-size: to-rem(18);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $color-ght-gold;
+
+    @include bp(lap) {
+      font-size: to-rem(20);
+    }
+  }
+
+  &__feature {
+    font-weight: 700;
+    color: $color-ght-dark;
+    min-width: 140px;
+    text-align: left;
+
+    tbody tr:nth-child(even) & {
+      background: rgba(0, 70, 123, 0.03);
+    }
+  }
+
+  &__icon {
+    text-align: center;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &--yes {
+      color: $color-ght-teal;
+    }
+
+    &--no {
+      color: $color-light-grey;
+    }
+  }
+}
