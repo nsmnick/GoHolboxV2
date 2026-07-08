@@ -87,6 +87,11 @@
       @include bp(lap) {
         grid-template-columns: repeat(2, 1fr);
         max-width: 760px;
+        gap: 48px;
+      }
+
+      @include bp(desk) {
+        gap: 64px;
       }
     }
 
@@ -110,9 +115,21 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
     position: relative;
     z-index: 1;
+    overflow: hidden;
 
     @include bp(lap) {
       transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+    }
+  }
+
+  &__card-image {
+    margin: -32px -24px 24px;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
     }
   }
 
@@ -159,12 +176,26 @@
   }
 
   &__card-name {
-    font-size: to-rem(13);
-    font-weight: 700;
+    font-size: to-rem(17);
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: $color-ght-teal;
-    margin: 0 0 12px;
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 3px;
+      border-radius: 2px;
+      background: $color-ght-gold;
+    }
   }
 
   &__card-price {
@@ -222,7 +253,23 @@
     margin-top: auto;
 
     .button {
+      box-sizing: border-box;
       width: 100%;
+    }
+
+    // "White outline" is Button Colour's own default, meant for dark
+    // backgrounds — the card here is always white regardless of the panel's
+    // own Background Colour, so a white button would be invisible. Force a
+    // dark outline instead, same fix as Icon Panel's light-background case.
+    .button--white {
+      color: $color-ght-charcoal;
+      border-color: $color-ght-charcoal;
+
+      &:hover {
+        background-color: $color-ght-charcoal;
+        border-color: $color-ght-charcoal;
+        color: $color-white;
+      }
     }
   }
 }

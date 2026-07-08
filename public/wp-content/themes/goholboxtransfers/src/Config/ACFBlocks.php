@@ -40,6 +40,8 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/link-panel');
         register_block_type(__DIR__ . '/acfBlocks/comparison-panel');
         register_block_type(__DIR__ . '/acfBlocks/pricing-panel');
+        register_block_type(__DIR__ . '/acfBlocks/icon-panel');
+        register_block_type(__DIR__ . '/acfBlocks/news-gallery-panel');
     }
 
     // Remove WP default blocks and allocate which blocks can be used by pages and posts by default.
@@ -76,6 +78,8 @@ class ACFBlocks
                     'acf/link-panel',
                     'acf/comparison-panel',
                     'acf/pricing-panel',
+                    'acf/icon-panel',
+                    'acf/news-gallery-panel',
                 );
             }
         }

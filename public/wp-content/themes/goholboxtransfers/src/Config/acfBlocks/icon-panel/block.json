@@ -1,0 +1,17 @@
+{
+  "name": "acf/icon-panel",
+  "title": "Icon Panel",
+  "description": "A row of icons with a label each, any of which can optionally be a linked button",
+  "category": "theme",
+  "icon": "<svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='6' cy='6' r='3' stroke='#000' stroke-width='2'/><circle cx='18' cy='6' r='3' stroke='#000' stroke-width='2'/><circle cx='6' cy='18' r='3' stroke='#000' stroke-width='2'/><circle cx='18' cy='18' r='3' stroke='#000' stroke-width='2'/></svg>",
+  "keywords": ["icon", "icons", "grid", "features", "badges"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "icon-panel.php"
+  },
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "align": false
+  }
+}

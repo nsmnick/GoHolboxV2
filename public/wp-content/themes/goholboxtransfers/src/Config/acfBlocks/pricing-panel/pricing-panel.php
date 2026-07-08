@@ -43,8 +43,15 @@ if (!$preview_popup_image && !$hide_panel) {
                 $link       = $plan['button']['button_link'] ?? null;
                 $colour     = $plan['button']['button_colour'] ?? 'gold';
                 $btn_class  = 'button' . ($colour !== 'gold' ? ' button--' . $colour : '');
+                $image_id   = $plan['plan_image'] ?? null;
             ?>
                 <div class="pricing-panel__card">
+                    <?php if ($image_id) : ?>
+                        <div class="pricing-panel__card-image">
+                            <?php echo wp_get_attachment_image($image_id, 'medium', false, ['loading' => 'lazy']); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if ($name) : ?>
                         <p class="pricing-panel__card-name"><?php echo esc_html($name); ?></p>
                     <?php endif; ?>
