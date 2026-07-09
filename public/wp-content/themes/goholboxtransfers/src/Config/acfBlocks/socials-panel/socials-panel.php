@@ -26,7 +26,7 @@ if (!$preview_popup_image && !$hide_panel) {
 ?>
 
 <section class="socials-panel animate fade-in <?php echo $generic_block_settings_classes; ?>">
-    <div class="container">
+    <div class="container <?php echo $generic_container_class; ?>">
 
         <?php if ($heading) : ?>
             <h2 class="socials-panel__heading"><?php echo esc_html($heading); ?></h2>

@@ -1,0 +1,447 @@
+// Planyo is a third-party embed — we can't change its HTML, only override
+// it via CSS, and everything is scoped under .planyo-booking-panel so
+// nothing here leaks onto other embeds elsewhere on the site. Selectors
+// target Planyo's own class/id names (form-group, control-label,
+// form-control, input-group, res_form_buttons, etc.) as given in the embed
+// code, not anything we control.
+//
+// Heavy !important use throughout is deliberate, not sloppy: the widget
+// loads its own Bootstrap + scheme stylesheets *after* ours in the DOM
+// (the <link>/<style> tags sit inside the embed markup, not the theme
+// head), so on equal specificity theirs wins by source order alone.
+// Confirmed by screenshot testing — without !important, text rendered
+// near-invisible pale grey and fields overflowed their container instead
+// of wrapping. Same defensive pattern already used in _forms.scss for
+// overriding Gravity Forms' own styles.
+
+.planyo-booking-panel {
+  padding: 40px 0;
+
+  @include bp(lap) {
+    padding: 64px 0;
+  }
+
+  &__widget {
+    max-width: 960px;
+    margin: 0 auto;
+    background: $color-white;
+    border-radius: 16px;
+    padding: 28px 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+
+    @include bp(lap) {
+      padding: 40px;
+    }
+
+    * {
+      box-sizing: border-box !important;
+    }
+  }
+
+  &__note {
+    margin: 14px 0 0;
+    font-size: to-rem(12);
+    font-style: italic;
+    color: $color-ght-charcoal;
+    text-align: center;
+
+    @include bp(lap) {
+      text-align: left;
+    }
+  }
+
+  // Our own markup (not Planyo's) — no third-party stylesheet fighting
+  // these, so no !important needed here.
+  &__plan-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  &__plan-tab {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    background: $color-light-grey;
+    border: 2px solid $color-light-grey;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: to-rem(14);
+    font-weight: 700;
+    color: $color-ght-dark;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.15s all ease-in-out;
+
+    span {
+      font-size: to-rem(12);
+      font-weight: 400;
+      color: $color-ght-charcoal;
+    }
+
+    &:hover {
+      border-color: $color-ght-teal;
+    }
+
+    &.is-active {
+      background: $color-ght-teal;
+      border-color: $color-ght-teal;
+      color: $color-white;
+
+      span {
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-ght-teal;
+      outline-offset: 2px;
+    }
+  }
+
+  // Planyo prints its own <link>/<style> tags inline with the widget
+  // markup — harmless, but hide the raw calendar iframe it also drops in;
+  // it's deliberately invisible (width/height 10px) and has no layout
+  // purpose here.
+  iframe[name^="ppemb"] {
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    border: 0 !important;
+  }
+
+  #planyo_price_preview_widget {
+    display: block;
+    font-family: inherit !important;
+  }
+
+  form.planyo {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px 24px !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  .planyo-form-item-group {
+    flex: 1 1 200px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    float: none !important;
+
+    // The date field's calendar-icon button needs a bit more room to sit
+    // alongside the input, everything else is a simple stacked label+field.
+    &.datefld {
+      flex-basis: 240px !important;
+    }
+  }
+
+  .control-label {
+    display: block !important;
+    width: auto !important;
+    float: none !important;
+    font-size: to-rem(12) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: $color-ght-charcoal !important;
+    margin-bottom: 6px !important;
+
+    em {
+      font-style: normal !important;
+      color: $color-ght-gold !important;
+      margin-left: 2px !important;
+    }
+  }
+
+  .form-control {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    background-color: $color-light-grey !important;
+    border: 1px solid $color-grey !important;
+    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    font-size: to-rem(15) !important;
+    line-height: 1.3 !important;
+    color: $color-ght-dark !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    &:focus {
+      outline: none !important;
+      border-color: $color-ght-gold !important;
+      background-color: $color-white !important;
+    }
+  }
+
+  select.form-control {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%231b161c' d='M6 8 0 0h12z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 10px 7px !important;
+    padding-right: 36px !important;
+    cursor: pointer;
+  }
+
+  .input-group {
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important;
+
+    .form-control {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-right: none !important;
+      flex: 1 1 auto !important;
+    }
+  }
+
+  .input-group-addon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    padding: 0 14px !important;
+    background: $color-ght-teal !important;
+    border: 1px solid $color-ght-teal !important;
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: $color-ght-gold !important;
+      border-color: $color-ght-gold !important;
+    }
+
+    .input-group-text {
+      display: flex !important;
+      align-items: center !important;
+    }
+  }
+
+  .planyo-cal-icon {
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+    position: relative;
+    background: none !important;
+
+    // Planyo serves its own calendar glyph as a background-image via the
+    // scheme CSS it links in — this SVG is a fallback in case that fails
+    // to load (blocked request, offline scheme URL, etc.), so the button
+    // never renders empty.
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M3 9h18M8 3v4M16 3v4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  #res_form_buttons {
+    flex-basis: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+
+    @include bp(lap) {
+      justify-content: flex-start !important;
+    }
+
+    &:empty {
+      display: none !important;
+    }
+
+    // Whatever button/link Planyo injects once a price is available —
+    // its own markup varies (button, input[type=submit], anchor with a
+    // .btn-ish class), so this is deliberately broad.
+    button,
+    input[type="submit"],
+    input[type="button"],
+    a {
+      display: inline-block !important;
+      background: $color-ght-gold !important;
+      border: solid 2px $color-ght-gold !important;
+      color: $color-ght-dark !important;
+      font-weight: 700 !important;
+      font-size: to-rem(15) !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      border-radius: 6px !important;
+      padding: 12px 24px !important;
+      cursor: pointer;
+      transition: 0.15s all ease-in-out;
+
+      &:hover {
+        background: $color-ght-dark !important;
+        border-color: $color-ght-dark !important;
+        color: $color-ght-gold !important;
+      }
+    }
+  }
+
+  // Attribute selectors rather than the literal #...PST44657 ids — those
+  // suffixes are specific to this one Planyo product/resource config, and
+  // the embed code is CMS-editable now (see PHP template), so a future
+  // paste-in with a different resource could carry a different suffix.
+  [id^="planyo_price_preview_parent"] {
+    flex-basis: 100% !important;
+    width: 100% !important;
+    margin-top: 12px !important;
+
+    &:empty {
+      display: none !important;
+    }
+  }
+
+  [id^="planyo_price_preview"]:not([id*="_parent"]):not([id*="_form"]):not([id="planyo_price_preview_widget"]) {
+    &:not(:empty) {
+      display: block !important;
+      background: rgba(0, 155, 178, 0.06) !important;
+      border: 1px solid rgba(0, 155, 178, 0.15) !important;
+      border-radius: 10px !important;
+      padding: 18px 20px !important;
+    }
+  }
+
+  // Clean price summary — built by initPlanyoPricePreview() (route-map.js's
+  // sibling, planyo-price-preview.js) from whatever text Planyo injects.
+  // If it can't confidently parse a total price out of that text, this
+  // never gets inserted and Planyo's raw text just displays as normal —
+  // so there's no bare/broken state to style defensively against here.
+  .planyo-price-clean {
+    text-align: center;
+
+    @include bp(lap) {
+      text-align: left;
+    }
+
+    &__label {
+      margin: 0 0 4px !important;
+      font-size: to-rem(12) !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      color: $color-ght-charcoal !important;
+    }
+
+    &__amount {
+      margin: 0 !important;
+      font-size: to-rem(28) !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      color: $color-ght-teal !important;
+
+      @include bp(lap) {
+        font-size: to-rem(34) !important;
+      }
+
+      span {
+        font-size: to-rem(15) !important;
+        font-weight: 700 !important;
+        color: $color-ght-charcoal !important;
+        vertical-align: middle !important;
+      }
+    }
+
+    &__divider {
+      color: $color-grey !important;
+      margin: 0 2px !important;
+    }
+
+    &__deposit {
+      display: inline-block !important;
+      margin: 10px 0 0 !important;
+      padding: 6px 14px !important;
+      background: $color-ght-gold !important;
+      color: $color-ght-dark !important;
+      font-size: to-rem(13) !important;
+      font-weight: 700 !important;
+      border-radius: 20px !important;
+    }
+
+    &__actions {
+      margin-top: 14px !important;
+    }
+
+    // Our own button (planyo-price-preview.js builds it directly, not
+    // Planyo's markup) — no third-party stylesheet fighting this one, so
+    // the !important here is just for consistency with the rest of this
+    // file, not strictly required.
+    &__book-btn {
+      display: inline-block !important;
+      background: $color-ght-teal !important;
+      border: solid 2px $color-ght-teal !important;
+      color: $color-white !important;
+      font-family: inherit !important;
+      font-weight: 700 !important;
+      font-size: to-rem(15) !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      border-radius: 6px !important;
+      padding: 12px 28px !important;
+      cursor: pointer;
+      transition: 0.15s all ease-in-out;
+
+      &:hover {
+        background: $color-ght-gold !important;
+        border-color: $color-ght-gold !important;
+        color: $color-ght-dark !important;
+      }
+    }
+
+    &__details {
+      margin-top: 16px !important;
+      border-top: 1px solid rgba(0, 155, 178, 0.15) !important;
+      padding-top: 12px !important;
+
+      summary {
+        cursor: pointer;
+        font-size: to-rem(13) !important;
+        font-weight: 700 !important;
+        color: $color-ght-teal !important;
+        text-decoration: underline;
+
+        &:hover {
+          color: $color-ght-gold !important;
+        }
+      }
+
+      // The original Planyo text, moved (not copied) in here as-is — kept
+      // small and muted since it's now the fine print, not the headline.
+      div {
+        margin-top: 10px !important;
+        font-size: to-rem(13) !important;
+        font-weight: 400 !important;
+        line-height: 1.6 !important;
+        color: $color-ght-charcoal !important;
+        text-align: left !important;
+      }
+    }
+  }
+
+  // Planyo's own date-picker dropdown is appended near the input it
+  // belongs to (absolutely positioned), so it needs to sit above the rest
+  // of the form and read cleanly against the page rather than however
+  // Planyo's default scheme styles it.
+  .picker_dropdown {
+    z-index: 20 !important;
+    background: $color-white !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
+    overflow: hidden !important;
+  }
+}

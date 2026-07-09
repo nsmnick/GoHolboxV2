@@ -42,6 +42,9 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/pricing-panel');
         register_block_type(__DIR__ . '/acfBlocks/icon-panel');
         register_block_type(__DIR__ . '/acfBlocks/news-gallery-panel');
+        register_block_type(__DIR__ . '/acfBlocks/planyo-booking-panel');
+        register_block_type(__DIR__ . '/acfBlocks/tripadvisor-panel');
+        register_block_type(__DIR__ . '/acfBlocks/support-panel');
     }
 
     // Remove WP default blocks and allocate which blocks can be used by pages and posts by default.
@@ -80,6 +83,9 @@ class ACFBlocks
                     'acf/pricing-panel',
                     'acf/icon-panel',
                     'acf/news-gallery-panel',
+                    'acf/planyo-booking-panel',
+                    'acf/tripadvisor-panel',
+                    'acf/support-panel',
                 );
             }
         }

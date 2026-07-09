@@ -12,6 +12,8 @@ import initToggleContent from "./toggle-content";
 import initImageColumnPanel from "./image-column-panel";
 import initBadgeLogoMorph from "./badge-logo-morph";
 import initRouteMap from "./route-map";
+import initPlanyoPlanSwitcher from "./planyo-plan-switcher";
+import initSupportPanel from "./support-panel";
 
 function ready(fn) {
   if (document.readyState !== "loading") {
@@ -34,4 +36,6 @@ ready(() => {
   initImageColumnPanel();
   initBadgeLogoMorph();
   initRouteMap();
+  initPlanyoPlanSwitcher();
+  initSupportPanel();
 });

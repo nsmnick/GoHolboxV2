@@ -55,7 +55,7 @@
                 "medium": "Medium",
                 "large": "Large"
             },
-            "default_value": false,
+            "default_value": "medium",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -88,5 +88,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1783351462
+    "modified": 1783601127
 }

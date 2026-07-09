@@ -19,7 +19,7 @@ if (!$preview_popup_image && !$hide_panel) {
 ?>
 
 <section class="text-column-panel animate fade-up <?php echo $generic_block_settings_classes; ?>">
-    <div class="container">
+    <div class="container <?php echo $generic_container_class; ?>">
 
         <?php if ($heading) : ?>
             <h2 class="text-column-panel__heading"><?php echo esc_html($heading); ?></h2>
