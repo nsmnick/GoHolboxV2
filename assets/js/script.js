@@ -14,6 +14,7 @@ import initBadgeLogoMorph from "./badge-logo-morph";
 import initRouteMap from "./route-map";
 import initPlanyoPlanSwitcher from "./planyo-plan-switcher";
 import initSupportPanel from "./support-panel";
+import initCustomSelects from "./custom-select";
 
 function ready(fn) {
   if (document.readyState !== "loading") {
@@ -38,4 +39,5 @@ ready(() => {
   initRouteMap();
   initPlanyoPlanSwitcher();
   initSupportPanel();
+  initCustomSelects();
 });
