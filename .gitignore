@@ -10,9 +10,7 @@ composer.phar
 
 /public/*
 !/public/.htaccess
-!/public/wp-config.php
 !/public/wp-content/
-!/public/wp-salt.php
 
 /public/wp-content/*
 # !/public/wp-content/uploads/
