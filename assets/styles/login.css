@@ -20,10 +20,12 @@ a:hover {
 
 body.login h1 a {
   display: block;
-  aspect-ratio: 142 / 50;
-  background-image: url("../images/logo-black.webp");
+  aspect-ratio: 1 / 1;
+  background-image: url("../images/GoHolboxLogo.png");
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
-  width: 200px;
+  width: 140px;
   margin: 0 auto;
 }
 

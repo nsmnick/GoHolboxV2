@@ -323,11 +323,10 @@ js_set_event(document, 'mousedown', 'js_close_calendar',false);
 </select>
 </div><div class='form-group planyo-form-item-group   single-col' id='row_rental_prop_persons'><label class='control-label'>Number of persons</label><select class='with-status-border form-control' name='rental_prop_persons' id='rental_prop_persons'  onchange="planyo_show_price_preview(35272)" >
 <option value='none'>---</option>
-<option  value="1" >1&nbsp;</option>
-<option  value="2" >2&nbsp;</option>
-<option  value="3" >3&nbsp;</option>
-<option  value="4" >4&nbsp;</option>
-<option  value="5" >5&nbsp;</option>
+<option  value="6" >6&nbsp;</option>
+<option  value="7" >7&nbsp;</option>
+<option  value="8" >8&nbsp;</option>
+<option  value="9" >9&nbsp;</option>
 </select>
 </div><input type='hidden' value="15" id='granulation' name='granulation' /><input type='hidden' value="fetch_price" id='mode' name='mode' /><input type='hidden' value="1" id='include_reserve_button' name='include_reserve_button' /><input type='hidden' value="1" id='html_mode' name='html_mode' /><input type='hidden' value="204935" id='resource_id' name='resource_id' /><input type='hidden' value="EN" id='custom-language' name='custom-language' /><div id='res_form_buttons' >
 </div>

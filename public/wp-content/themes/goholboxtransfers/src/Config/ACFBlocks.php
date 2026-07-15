@@ -33,7 +33,6 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/two-column-panel');
         register_block_type(__DIR__ . '/acfBlocks/contact-details-panel');
         register_block_type(__DIR__ . '/acfBlocks/text-column-panel');
-        register_block_type(__DIR__ . '/acfBlocks/socials-panel');
         register_block_type(__DIR__ . '/acfBlocks/route-map-panel');
         register_block_type(__DIR__ . '/acfBlocks/table-panel');
         register_block_type(__DIR__ . '/acfBlocks/hyperlink-panel');
@@ -43,7 +42,7 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/icon-panel');
         register_block_type(__DIR__ . '/acfBlocks/news-gallery-panel');
         register_block_type(__DIR__ . '/acfBlocks/planyo-booking-panel');
-        register_block_type(__DIR__ . '/acfBlocks/tripadvisor-panel');
+        register_block_type(__DIR__ . '/acfBlocks/social-panel');
         register_block_type(__DIR__ . '/acfBlocks/support-panel');
     }
 
@@ -74,7 +73,6 @@ class ACFBlocks
                     'acf/two-column-panel',
                     'acf/contact-details-panel',
                     'acf/text-column-panel',
-                    'acf/socials-panel',
                     'acf/route-map-panel',
                     'acf/table-panel',
                     'acf/hyperlink-panel',
@@ -84,7 +82,7 @@ class ACFBlocks
                     'acf/icon-panel',
                     'acf/news-gallery-panel',
                     'acf/planyo-booking-panel',
-                    'acf/tripadvisor-panel',
+                    'acf/social-panel',
                     'acf/support-panel',
                 );
             }
