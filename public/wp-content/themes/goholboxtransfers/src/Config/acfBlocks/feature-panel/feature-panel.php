@@ -16,8 +16,9 @@ if (!$preview_popup_image && !$hide_panel) {
 
 <section class="feature-panel feature-panel--<?php echo $count_class; ?> animate fade-up <?php echo $generic_block_settings_classes; ?>">
     <?php foreach (array_slice($features, 0, 3) as $feature) :
-        $image_id = $feature['feature_image'] ?? null;
-        $heading  = $feature['feature_heading'] ?? '';
+        $image_id   = $feature['feature_image'] ?? null;
+        $heading    = $feature['feature_heading'] ?? '';
+        $subheading = $feature['feature_subheading'] ?? '';
         $link      = $feature['button']['button_link'] ?? null;
         $colour    = $feature['button']['button_colour'] ?? 'gold';
         $btn_class = 'button' . ($colour !== 'gold' ? ' button--' . $colour : '');
@@ -31,6 +32,9 @@ if (!$preview_popup_image && !$hide_panel) {
             <div class="feature-panel__content">
                 <?php if ($heading) : ?>
                     <h3 class="feature-panel__heading"><?php echo esc_html($heading); ?></h3>
+                <?php endif; ?>
+                <?php if ($subheading) : ?>
+                    <p class="feature-panel__subheading"><?php echo esc_html($subheading); ?></p>
                 <?php endif; ?>
                 <?php if ($link && !empty($link['url'])) : ?>
                     <a

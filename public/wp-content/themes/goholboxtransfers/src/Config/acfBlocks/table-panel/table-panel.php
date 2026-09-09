@@ -5,6 +5,7 @@ include __DIR__ . '/../_block-preview.php';
 if (!$preview_popup_image && !$hide_panel) {
     $heading      = get_field('table_heading');
     $intro        = get_field('table_intro');
+    $row_head     = get_field('row_head_label') ?: 'From';
     $column_1     = get_field('column_1_label');
     $column_1_sub = get_field('column_1_sublabel');
     $column_2     = get_field('column_2_label');
@@ -37,7 +38,7 @@ if (!$preview_popup_image && !$hide_panel) {
             <table class="table-panel__table">
                 <thead>
                     <tr>
-                        <th class="table-panel__row-head"></th>
+                        <th class="table-panel__row-head"><?php echo esc_html($row_head); ?></th>
                         <th>
                             <?php echo esc_html($column_1); ?>
                             <?php if ($column_1_sub) : ?>
@@ -54,12 +55,21 @@ if (!$preview_popup_image && !$hide_panel) {
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $row) :
-                        $row_label = $row['row_label'] ?? '';
-                        $value_1   = $row['column_1_value'] ?? '';
-                        $value_2   = $row['column_2_value'] ?? '';
+                        $row_label  = $row['row_label'] ?? '';
+                        $value_1    = $row['column_1_value'] ?? '';
+                        $value_2    = $row['column_2_value'] ?? '';
+                        $plane_info = $row['plane_info'] ?? '';
                     ?>
                         <tr>
-                            <td class="table-panel__row-label"><?php echo esc_html($row_label); ?></td>
+                            <td class="table-panel__row-label">
+                                <?php echo esc_html($row_label); ?>
+                                <?php if ($plane_info) : ?>
+                                    <details class="table-panel__place-info">
+                                        <summary class="table-panel__place-info-toggle">Plane Info</summary>
+                                        <div class="table-panel__place-info-content"><?php echo nl2br(esc_html($plane_info)); ?></div>
+                                    </details>
+                                <?php endif; ?>
+                            </td>
                             <td class="table-panel__value"><?php echo esc_html($value_1); ?></td>
                             <td class="table-panel__value"><?php echo esc_html($value_2); ?></td>
                         </tr>

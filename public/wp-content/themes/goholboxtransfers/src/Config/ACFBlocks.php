@@ -44,6 +44,18 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/planyo-booking-panel');
         register_block_type(__DIR__ . '/acfBlocks/social-panel');
         register_block_type(__DIR__ . '/acfBlocks/support-panel');
+        register_block_type(__DIR__ . '/acfBlocks/trust-panel');
+        register_block_type(__DIR__ . '/acfBlocks/card-panel');
+        register_block_type(__DIR__ . '/acfBlocks/text-and-image-panel');
+        register_block_type(__DIR__ . '/acfBlocks/button-panel');
+        register_block_type(__DIR__ . '/acfBlocks/image-slider-panel');
+        register_block_type(__DIR__ . '/acfBlocks/card-process-panel');
+        register_block_type(__DIR__ . '/acfBlocks/plain-text-panel');
+        register_block_type(__DIR__ . '/acfBlocks/price-table-panel');
+        register_block_type(__DIR__ . '/acfBlocks/faq-card-panel');
+        register_block_type(__DIR__ . '/acfBlocks/faq-steps-panel');
+        register_block_type(__DIR__ . '/acfBlocks/contact-cards-panel');
+        register_block_type(__DIR__ . '/acfBlocks/tripadvisor-reviews-panel');
     }
 
     // Remove WP default blocks and allocate which blocks can be used by pages and posts by default.
@@ -84,6 +96,18 @@ class ACFBlocks
                     'acf/planyo-booking-panel',
                     'acf/social-panel',
                     'acf/support-panel',
+                    'acf/trust-panel',
+                    'acf/card-panel',
+                    'acf/text-and-image-panel',
+                    'acf/button-panel',
+                    'acf/image-slider-panel',
+                    'acf/card-process-panel',
+                    'acf/plain-text-panel',
+                    'acf/price-table-panel',
+                    'acf/faq-card-panel',
+                    'acf/faq-steps-panel',
+                    'acf/contact-cards-panel',
+                    'acf/tripadvisor-reviews-panel',
                 );
             }
         }

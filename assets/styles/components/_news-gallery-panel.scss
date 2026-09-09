@@ -4,11 +4,9 @@
   padding: 60px 0;
 
   &__heading {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
     color: $color-ght-teal;
-    margin: 0 0 1rem;
     text-align: center;
+    @include panel-heading;
   }
 
   &__intro {

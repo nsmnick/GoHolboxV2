@@ -1,0 +1,61 @@
+.button-panel {
+  // Top/bottom spacing + background/decoration come from the .content class
+  // (_content.scss) via the Panel Settings clone field, same as card-panel.
+  // Content used to sit inside its own white card box — now sits directly
+  // on the panel's own background instead.
+  text-align: center;
+
+  &__heading {
+    color: $color-ght-teal;
+    font-family: get-font-family("main");
+    line-height: 1.3;
+    @include panel-heading;
+  }
+
+  &__intro {
+    max-width: 640px;
+    margin: 0 auto 24px;
+    color: $color-dark-grey;
+    line-height: 1.6;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Explicit CMS "Heading Colour" choice, overriding the hardcoded navy
+  // default above when an editor deliberately picks one. The intro text
+  // picks up the same colour as the heading rather than getting its own
+  // separate field.
+  &.htc-white &__heading, &.htc-white &__intro { color: $color-white; }
+  &.htc-light-grey &__heading, &.htc-light-grey &__intro { color: $color-light-grey; }
+  &.htc-grey &__heading, &.htc-grey &__intro { color: $color-grey; }
+  &.htc-gold &__heading, &.htc-gold &__intro { color: $color-ght-gold; }
+  &.htc-navy &__heading, &.htc-navy &__intro { color: $color-ght-teal; }
+  &.htc-dark &__heading, &.htc-dark &__intro { color: $color-ght-dark; }
+  &.htc-charcoal &__heading, &.htc-charcoal &__intro { color: $color-ght-charcoal; }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    &--two,
+    &--three {
+      @include bp(lap) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+
+    @include bp(lap) {
+      width: auto;
+    }
+  }
+}

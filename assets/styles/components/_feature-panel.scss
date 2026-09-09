@@ -48,12 +48,22 @@
 
     &__heading {
         color: $color-white;
-        font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-        font-weight: 700;
         line-height: 1.2;
-        margin: 0;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         transition: transform 0.3s ease;
+        @include panel-heading;
+        // Spacing to the rest of &__content comes from its flex `gap`, not
+        // the heading's own margin.
+        margin: 0;
+    }
+
+    &__subheading {
+        max-width: 320px;
+        margin: 0;
+        color: $color-white;
+        font-size: to-rem(15);
+        line-height: 1.5;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
     &__item:hover &__overlay {

@@ -377,13 +377,11 @@
   margin-bottom: 60px;
 
   &__heading {
-    font-size: to-rem(22);
-    font-weight: 700;
     color: $color-ght-dark;
-    margin: 0 0 24px;
     display: flex;
     align-items: baseline;
     gap: 10px;
+    @include panel-heading;
   }
 
   &__label {

@@ -1,0 +1,482 @@
+.text-and-image-panel {
+  padding: 60px 0;
+
+  @include bp(desk) {
+    padding: 100px 0;
+  }
+
+  @include panel-settings-modifiers;
+
+  // Card wrapper — bg/border/shadow/radius match the supplied design,
+  // reusing this theme's own colour tokens instead of its one-off hex.
+  &__columns {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: $color-white;
+    border: 1px solid rgba($color-ght-teal, 0.1);
+    border-radius: 22px;
+    box-shadow: 0 16px 42px rgba($color-ght-dark, 0.09);
+    overflow: hidden;
+
+    @include bp(lap) {
+      flex-direction: row;
+    }
+
+    &--image-left {
+      @include bp(lap) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &__text {
+    // This codebase has no global box-sizing:border-box reset — only
+    // html/body get it — so with the default content-box, this element's
+    // own horizontal padding was being added on top of its 100% width,
+    // overflowing &__columns by 48px on mobile (below bp(lap), where
+    // &__text is sized by this width rather than the flex-basis used at
+    // bp(lap)+). &__columns' overflow:hidden then silently clipped the
+    // right edge instead of wrapping, reading as off-centre/cut-off text.
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 24px;
+
+    @include bp(tab) {
+      padding: 46px 38px;
+    }
+
+    @include bp(lap) {
+      flex: 0.85 1 0;
+      // A flex item's default automatic minimum width is based on its
+      // content's min-content size — normally harmless, but an unusually
+      // long unbroken string (a long URL, a run-on word) can force that
+      // minimum well past this item's intended ~54% share, squeezing
+      // &__image down to a sliver. min-width:0 lets it shrink/wrap normally
+      // instead, so a content edge case can't steal the image's space.
+      min-width: 0;
+      padding: 55px 50px;
+    }
+
+    // Colour/weight/size come from the shared .wysiwyg-container base
+    // (core-components/_wysiwyg.scss) now — this panel only needs its own
+    // heading margin (tighter than that base's long-form-content spacing)
+    // and the word-break fix below.
+    .wysiwyg-container {
+      h2 {
+        margin: 0 0 14px;
+      }
+
+      p {
+        // A long unbroken string (a long URL, a run-on word) can force
+        // &__text wider than its intended share of the flex row — see the
+        // min-width:0 note above — wrapping normally instead lets it break.
+        overflow-wrap: break-word;
+
+        strong {
+          color: $color-ght-teal;
+        }
+      }
+
+      // Checklist look — circled tick instead of the shared wysiwyg dot bullet.
+      ul {
+        display: grid;
+        gap: 15px;
+        list-style: none;
+        margin: 0 0 20px;
+        padding-left: 0;
+
+        li {
+          position: relative;
+          padding-left: 33px;
+          color: $color-dark-grey;
+          font-size: to-rem(16);
+          line-height: 1.65;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: rgba($color-ght-teal, 0.05);
+            border: 2px solid $color-ght-teal;
+            border-radius: 50%;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 5px;
+            width: 8px;
+            height: 5px;
+            border-left: 2px solid $color-ght-teal;
+            border-bottom: 2px solid $color-ght-teal;
+            transform: rotate(-45deg);
+          }
+        }
+      }
+
+      // "Read More" expandable section, if a <details> is added via the
+      // WYSIWYG's Custom HTML/code view.
+      details {
+        margin-top: 8px;
+        border-top: 1px solid $color-light-grey;
+        border-bottom: 1px solid $color-light-grey;
+
+        summary {
+          position: relative;
+          padding: 22px 44px 22px 0;
+          color: $color-ght-teal;
+          font-size: to-rem(16);
+          font-weight: 600;
+          cursor: pointer;
+          list-style: none;
+
+          &::-webkit-details-marker {
+            display: none;
+          }
+
+          &::marker {
+            display: none;
+            content: '';
+          }
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            width: 18px;
+            height: 2px;
+            background: $color-ght-teal;
+            transform: translateY(-50%);
+            transition: transform 0.25s ease;
+          }
+
+          &::after {
+            transform: translateY(-50%) rotate(90deg);
+          }
+        }
+
+        &[open] summary::after {
+          transform: translateY(-50%) rotate(0deg);
+        }
+
+        &-content,
+        > div {
+          padding: 4px 0 28px;
+        }
+      }
+
+      // Safety-note style callout — apply the "note" class in the WYSIWYG's
+      // Custom HTML/code view to get this treatment on any paragraph/div.
+      .note {
+        position: relative;
+        margin: 25px 0 0;
+        padding: 20px 22px;
+        color: $color-ght-teal;
+        background: $color-light-grey;
+        border-left: 3px solid $color-ght-teal;
+        border-radius: 9px;
+        font-size: to-rem(15);
+        line-height: 1.75;
+      }
+    }
+  }
+
+  &__image {
+    // Image always above the text on mobile, regardless of the "Image
+    // Position" (left/right) field — that field only controls which side
+    // the image sits on at bp(lap)+ (via flex-direction row/row-reverse
+    // above), not DOM order, so below that it still needs its own reorder
+    // here. Reset back to normal order at bp(lap)+ so the row/row-reverse
+    // switch above is what actually determines left/right there.
+    order: -1;
+
+    @include bp(lap) {
+      order: 0;
+    }
+
+    position: relative;
+    width: 100%;
+    // height (not just min-height) below bp(lap) — this is a plain block
+    // box there (the columns are stacked, not a flex row), so min-height
+    // alone left it with no definite height for percentage-height children
+    // to resolve against. At bp(lap)+ it becomes a flex item under
+    // align-items:stretch instead, which already gives it a genuinely
+    // definite resolved height post-layout — height must NOT be set there
+    // too, or it'd override that stretch behaviour instead of just flooring it.
+    height: 310px;
+    min-height: 310px;
+    overflow: hidden;
+    background: $color-light-grey;
+
+    @include bp(tab) {
+      height: 470px;
+      min-height: 470px;
+    }
+
+    @include bp(lap) {
+      flex: 1.15 1 0;
+      height: auto;
+      min-height: 610px;
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba($color-ght-dark, 0.28) 0%,
+        rgba($color-ght-dark, 0.04) 50%,
+        transparent 78%
+      );
+      pointer-events: none;
+    }
+  }
+
+  // flex-wrap (not a forced breakpoint) is enough here — buttons are narrow
+  // enough to naturally stay side by side until they no longer fit, then
+  // wrap onto their own line.
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    // Centred on mobile; back to left-aligned (matching the text above it)
+    // from bp(lap) up, where this sits in the split text/image layout.
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+
+    @include bp(lap) {
+      justify-content: flex-start;
+    }
+  }
+
+  // Same chevron-toggle look as the WYSIWYG's own inline <details> pattern
+  // (see .wysiwyg-container details above) — this is the field-driven
+  // equivalent, so it gets its own dedicated classes rather than relying on
+  // an editor hand-typing HTML into the Custom HTML/code view.
+  &__more-info {
+    margin-top: 24px;
+    border-top: 1px solid $color-light-grey;
+
+    &[open] &-toggle::after {
+      transform: translateY(-50%) rotate(0deg);
+    }
+  }
+
+  &__more-info-toggle {
+    position: relative;
+    padding: 18px 44px 18px 0;
+    color: $color-ght-teal;
+    font-size: to-rem(16);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      display: none;
+      content: '';
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 4px;
+      width: 18px;
+      height: 2px;
+      background: $color-ght-teal;
+      transform: translateY(-50%);
+      transition: transform 0.25s ease;
+    }
+
+    &::after {
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
+
+  &__more-info-content {
+    padding: 4px 0 24px;
+    color: $color-dark-grey;
+    font-size: to-rem(16);
+    line-height: 1.85;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Explicit CMS "Heading Colour" choice, overriding the hardcoded navy
+  // default set on the WYSIWYG h2 above when an editor deliberately picks
+  // one. Only the h2 (the actual "heading") — h3/h4 stay as in-body
+  // sub-headings regardless.
+  &.htc-white &__text .wysiwyg-container h2 { color: $color-white; }
+  &.htc-light-grey &__text .wysiwyg-container h2 { color: $color-light-grey; }
+  &.htc-grey &__text .wysiwyg-container h2 { color: $color-grey; }
+  &.htc-gold &__text .wysiwyg-container h2 { color: $color-ght-gold; }
+  &.htc-navy &__text .wysiwyg-container h2 { color: $color-ght-teal; }
+  &.htc-dark &__text .wysiwyg-container h2 { color: $color-ght-dark; }
+  &.htc-charcoal &__text .wysiwyg-container h2 { color: $color-ght-charcoal; }
+}
+
+// Optional image slider (Swiper — wired up in assets/js/sliders.js) used
+// in place of the plain <img> inside &__image when "Use Image Slider" is
+// enabled. Sits inside the same &__image container, so it inherits that
+// element's sizing/gradient-overlay/min-height already defined above.
+.text-and-image-slider {
+  &__slides-wrapper,
+  &__slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-ght-teal;
+    background: rgba($color-white, 0.92);
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba($color-ght-dark, 0.18);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      color: $color-white;
+      background: $color-ght-teal;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba($color-ght-teal, 0.3);
+      outline-offset: 3px;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &--prev {
+      left: 18px;
+
+      @media (max-width: 600px) {
+        left: 12px;
+      }
+    }
+
+    &--next {
+      right: 18px;
+
+      @media (max-width: 600px) {
+        right: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__pagination {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transform: translateX(-50%);
+
+    &__bullet {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      background: rgba($color-white, 0.7);
+      border: 1px solid rgba($color-ght-teal, 0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      transition:
+        width 0.25s ease,
+        border-radius 0.25s ease,
+        background 0.25s ease;
+
+      &--active {
+        width: 27px;
+        background: $color-white;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    left: 20px;
+    padding: 8px 13px;
+    color: $color-ght-teal;
+    background: rgba($color-white, 0.9);
+    border-radius: 30px;
+    font-family: get-font-family("main");
+    font-size: to-rem(13);
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    @media (max-width: 600px) {
+      top: 14px;
+      left: 14px;
+    }
+  }
+}

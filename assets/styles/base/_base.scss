@@ -55,20 +55,12 @@ h1 {
 
 h2 {
   font-family: get-font-family("main");
-
   line-height: 1.2;
-  font-weight: 600;
-  margin: 0 0 26px;
-
-  font-size: to-rem(24);
-  letter-spacing: -0.65752px; //background-color: red;
-  @include bp(lap) {
-    font-size: to-rem(33);
-  }
-
-  @include bp(desk) {
-    font-size: to-rem(33);
-  }
+  // Same panel-heading size/weight/margin (see
+  // tools/mixins/_panel-heading.scss) as .wysiwyg-container h2 and every
+  // panel heading site-wide — a plain <h2> reads identically wherever it's
+  // used.
+  @include panel-heading;
 }
 
 h3 {

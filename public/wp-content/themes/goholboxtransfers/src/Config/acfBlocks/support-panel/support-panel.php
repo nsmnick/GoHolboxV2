@@ -3,8 +3,9 @@ include __DIR__ . '/../_block-generics.php';
 include __DIR__ . '/../_block-preview.php';
 
 if (!$preview_popup_image && !$hide_panel) {
-    $heading = get_field('heading');
-    $intro   = get_field('intro');
+    $heading       = get_field('heading');
+    $intro         = get_field('intro');
+    $max_questions = (int) (get_field('max_questions_shown') ?: 0);
 
     // Topics are the faq_topic taxonomy terms, and each topic's FAQs are real
     // "faq" CPT posts assigned to that term — not a manually-entered
@@ -121,6 +122,7 @@ if (!$preview_popup_image && !$hide_panel) {
                     <div
                         class="support-panel__topic<?php echo $i === 0 ? ' is-active' : ''; ?>"
                         data-topic="<?php echo esc_attr($topic['slug']); ?>"
+                        <?php if ($max_questions > 0) : ?>data-max-questions="<?php echo esc_attr($max_questions); ?>"<?php endif; ?>
                         <?php if ($i !== 0) : ?>hidden<?php endif; ?>
                     >
                         <h2 class="support-panel__topic-heading"><?php echo esc_html($topic['name']); ?></h2>
@@ -140,11 +142,22 @@ if (!$preview_popup_image && !$hide_panel) {
                                         <span class="faq-item__question"><?php echo esc_html($question); ?></span>
                                     </summary>
                                     <div class="faq-item__content">
-                                        <?php echo wp_kses_post($answer); ?>
+                                        <?php
+                                        // force_balance_tags() guards against a stray/unmatched
+                                        // closing tag inside an answer's rich content (e.g. an
+                                        // extra </div>) prematurely closing a surrounding wrapper.
+                                        echo wp_kses_post(force_balance_tags($answer));
+                                        ?>
                                     </div>
                                 </details>
                             <?php endforeach; ?>
                         </div>
+
+                        <?php if ($max_questions > 0 && count($topic['faqs']) > $max_questions) : ?>
+                            <button type="button" class="support-panel__show-more">
+                                Show More Questions
+                            </button>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>

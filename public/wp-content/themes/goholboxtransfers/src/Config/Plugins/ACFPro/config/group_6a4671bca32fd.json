@@ -52,6 +52,28 @@
                     "parent_repeater": "field_6a4671bce41e2"
                 },
                 {
+                    "key": "field_6a6cea67453c3",
+                    "label": "Feature Subheading",
+                    "name": "feature_subheading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6a4671bce41e2"
+                },
+                {
                     "key": "field_6a4671dbe41e4",
                     "label": "Feature Heading",
                     "name": "feature_heading",
@@ -104,7 +126,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/feature-panel"
+                "value": "acf/feature-panel"
             }
         ]
     ],
