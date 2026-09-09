@@ -24,7 +24,7 @@
             "append": ""
         },
         {
-            "key": "field_6a57696ed636e",
+            "key": "field_6a57694901a43",
             "label": "Select FAQs",
             "name": "selected_faqs",
             "aria-label": "",
@@ -50,15 +50,15 @@
                 "taxonomy"
             ],
             "return_format": "object",
-            "min": 2,
-            "max": 7,
+            "min": "",
+            "max": "",
             "allow_in_bindings": 0,
             "elements": "",
             "bidirectional": 0,
             "bidirectional_target": []
         },
         {
-            "key": "field_6a47a667c392e",
+            "key": "field_6a57693101a42",
             "label": "Panel Settings",
             "name": "panel_settings",
             "aria-label": "",
@@ -101,5 +101,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784114320
+    "modified": 1788969386
 }

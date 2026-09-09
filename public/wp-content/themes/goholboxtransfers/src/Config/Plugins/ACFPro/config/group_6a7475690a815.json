@@ -53,6 +53,27 @@
             "save_options": 0
         },
         {
+            "key": "field_6a904c9585c03",
+            "label": "Google Reviews Shortcode",
+            "name": "google_reviews_shortcode",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a747579a54f8",
             "label": "Panel Settings",
             "name": "panel_settings",
@@ -96,5 +117,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786018393
+    "modified": 1788969387
 }

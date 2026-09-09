@@ -1,9 +1,9 @@
 {
-    "key": "group_6a4b9641ce913",
-    "title": "Hyperlink Panel",
+    "key": "group_6a4e7a8747d2d",
+    "title": "News Gallery Panel",
     "fields": [
         {
-            "key": "field_6a4b9642320c9",
+            "key": "field_6a4e7a8748edc",
             "label": "Heading",
             "name": "heading",
             "aria-label": "",
@@ -24,7 +24,28 @@
             "append": ""
         },
         {
-            "key": "field_6a4b964f320ca",
+            "key": "field_6a4e7a9548edd",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_6a4e7a9c48ede",
             "label": "Panel Settings",
             "name": "panel_settings",
             "aria-label": "",
@@ -51,7 +72,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hyperlink-panel"
+                "value": "acf\/news-gallery-panel"
             }
         ]
     ],
@@ -67,5 +88,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1788969386
+    "modified": 1788969387
 }

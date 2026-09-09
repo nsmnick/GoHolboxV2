@@ -69,6 +69,7 @@ class Utils
         $top_padding = (isset($generic_block_settings['top_padding']) ? $generic_block_settings['top_padding'] : '');
         $bottom_padding = (isset($generic_block_settings['bottom_padding']) ? $generic_block_settings['bottom_padding'] : '');
         $background_colour = (isset($generic_block_settings['background_colour']) ? $generic_block_settings['background_colour'] : '');
+        $heading_colour = (isset($generic_block_settings['heading_colour']) ? $generic_block_settings['heading_colour'] : '');
         $panel_decoration_value = (isset($generic_block_settings['panel_decoration']) ? $generic_block_settings['panel_decoration'] : 'br-none');
 
         $generic_block_class = '';
@@ -87,6 +88,10 @@ class Utils
 
         if ($background_colour) {
             $generic_block_class .= ' bgc-' . $background_colour . ' ';
+        }
+
+        if ($heading_colour) {
+            $generic_block_class .= ' htc-' . $heading_colour . ' ';
         }
 
         return $generic_block_class;
@@ -108,6 +113,25 @@ class Utils
         } else {
             return $link_url;
         }
+    }
+
+    /**
+     * The anchor id a Table Panel is reachable at: its manually-set HTML anchor
+     * if one was given, otherwise a slug derived from its heading, otherwise a
+     * fallback based on the block's own id. Shared so the Table Panel and the
+     * Hyperlink Panel that jumps to it always agree on the same id.
+     */
+    public static function get_table_panel_anchor(string $heading, string $explicit_anchor = '', string $block_id = ''): string
+    {
+        if ($explicit_anchor !== '') {
+            return $explicit_anchor;
+        }
+
+        if ($heading !== '') {
+            return sanitize_title($heading);
+        }
+
+        return 'table-' . preg_replace('/[^a-zA-Z0-9_-]/', '', $block_id);
     }
 
     /**

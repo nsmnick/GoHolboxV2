@@ -101,7 +101,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/hero-panel"
+                "value": "acf\/hero-panel"
             }
         ]
     ],
@@ -117,5 +117,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1783345694
+    "modified": 1788969386
 }

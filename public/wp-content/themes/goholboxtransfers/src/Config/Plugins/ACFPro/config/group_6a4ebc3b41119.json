@@ -45,6 +45,29 @@
             "new_lines": ""
         },
         {
+            "key": "field_6a90469776b10",
+            "label": "Max Questions Shown",
+            "name": "max_questions_shown",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a576df337525",
             "label": "Select FAQs",
             "name": "selected_faqs",
@@ -104,7 +127,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/support-panel"
+                "value": "acf\/support-panel"
             }
         ]
     ],
@@ -120,5 +143,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1783600875
+    "modified": 1788969387
 }

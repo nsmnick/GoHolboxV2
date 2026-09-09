@@ -3,7 +3,7 @@
     "title": "Socials Panel",
     "fields": [
         {
-            "key": "field_6a5792533980d",
+            "key": "field_6a57946f95a8a",
             "label": "Platform",
             "name": "platform",
             "aria-label": "",
@@ -93,5 +93,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784126051
+    "modified": 1788969387
 }
