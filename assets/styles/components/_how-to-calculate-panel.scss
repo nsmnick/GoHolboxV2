@@ -1,0 +1,198 @@
+// Three-step "how it's calculated" guide with a numbered walkthrough and a
+// checklist of notes. Uses the same teal/gold brand pairing and numbered-
+// circle pattern as .card-panel's step list (&__step-number), but as its own
+// full-width panel rather than a card, with a gradient backdrop.
+.how-to-calculate-panel {
+  padding: 60px 0;
+
+  @include panel-settings-modifiers;
+
+  @include bp(lap) {
+    padding: 80px 0;
+  }
+
+  &__card {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 20px;
+    border-radius: 22px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top left, rgba($color-ght-teal, 0.45), transparent 42%),
+      linear-gradient(
+        145deg,
+        lighten($color-ght-teal, 14%) 0%,
+        $color-ght-teal 48%,
+        darken($color-ght-teal, 18%) 100%
+      );
+    box-shadow: 0 12px 30px rgba($color-ght-dark, 0.18);
+
+    @include bp(lap) {
+      padding: 28px 30px;
+    }
+  }
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 26px;
+
+    h2 {
+      margin: 0 0 7px;
+      color: $color-white;
+      font-family: get-font-family("main");
+      font-size: to-rem(28);
+      font-weight: 300;
+      line-height: 1.2;
+
+      @include bp(lap) {
+        font-size: to-rem(32);
+      }
+    }
+  }
+
+  // CMS "Heading Colour" is deliberately ignored here (same precedent as
+  // .card-panel's &__title) — this heading sits on the panel's own teal
+  // gradient, so it always stays white regardless of what's picked.
+
+  &__intro {
+    margin: 0;
+    color: rgba($color-white, 0.9);
+    font-family: get-font-family("main");
+    font-size: to-rem(15);
+    line-height: 1.5;
+  }
+
+  &__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+
+    @include bp(lap) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+  }
+
+  &__step {
+    position: relative;
+    text-align: center;
+    padding: 20px 15px;
+    border-radius: 16px;
+    background: rgba($color-white, 0.11);
+    border: 1px solid rgba($color-white, 0.16);
+
+    h3 {
+      margin: 0 0 7px;
+      color: $color-white;
+      font-family: get-font-family("main");
+      font-size: to-rem(17);
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: rgba($color-white, 0.92);
+      font-family: get-font-family("main");
+      font-size: to-rem(14);
+      line-height: 1.5;
+    }
+  }
+
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, lighten($color-ght-gold, 6%) 0%, $color-ght-gold 55%, darken($color-ght-gold, 12%) 100%);
+    color: $color-white;
+    font-family: get-font-family("main");
+    font-size: to-rem(19);
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba($color-ght-dark, 0.25);
+  }
+
+  &__step-arrow {
+    display: none;
+    position: absolute;
+    right: -23px;
+    top: 50%;
+    z-index: 5;
+    transform: translateY(-50%);
+    color: $color-ght-gold;
+
+    @include bp(lap) {
+      display: block;
+    }
+  }
+
+  &__note {
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: rgba($color-ght-dark, 0.2);
+    border: 1px solid rgba($color-white, 0.18);
+  }
+
+  &__note-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: $color-white;
+    font-family: get-font-family("main");
+    font-size: to-rem(16);
+    font-weight: 700;
+
+    svg {
+      flex-shrink: 0;
+      color: $color-ght-gold;
+    }
+  }
+
+  &__note-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+
+    @include bp(lap) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px 25px;
+    }
+  }
+
+  &__note-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: rgba($color-white, 0.94);
+    font-family: get-font-family("main");
+    font-size: to-rem(14);
+    line-height: 1.45;
+
+    strong {
+      color: $color-white;
+    }
+  }
+
+  &__note-check {
+    flex: 0 0 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: rgba($color-white, 0.92);
+    color: $color-ght-teal;
+
+    svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
+}

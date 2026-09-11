@@ -56,6 +56,8 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/faq-steps-panel');
         register_block_type(__DIR__ . '/acfBlocks/contact-cards-panel');
         register_block_type(__DIR__ . '/acfBlocks/tripadvisor-reviews-panel');
+        register_block_type(__DIR__ . '/acfBlocks/how-to-calculate-panel');
+        register_block_type(__DIR__ . '/acfBlocks/service-cards-panel');
     }
 
     // Remove WP default blocks and allocate which blocks can be used by pages and posts by default.
@@ -108,6 +110,8 @@ class ACFBlocks
                     'acf/faq-steps-panel',
                     'acf/contact-cards-panel',
                     'acf/tripadvisor-reviews-panel',
+                    'acf/how-to-calculate-panel',
+                    'acf/service-cards-panel',
                 );
             }
         }

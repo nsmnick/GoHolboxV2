@@ -84,6 +84,39 @@ export default function initSliders() {
     },
   );
 
+  // Service Cards Panel — one independent slider per card, so (unlike the
+  // single-selector Swiper calls above) this instantiates one per matching
+  // element rather than only binding the first. Cards with a single image
+  // skip the nav/pagination markup entirely (see the block's PHP), so there
+  // are no elements for Swiper to bind navigation/pagination to — loop is
+  // also disabled in that case since Swiper's loop mode needs more than one
+  // slide.
+  document.querySelectorAll(".service-card-swiper").forEach((sliderEl) => {
+    const slideCount = sliderEl.querySelectorAll(".swiper-slide").length;
+
+    if (slideCount <= 1) {
+      return;
+    }
+
+    new Swiper(sliderEl, {
+      modules: [Navigation, Pagination],
+      slidesPerView: 1,
+      loop: true,
+      navigation: {
+        nextEl: sliderEl.querySelector(".service-card-swiper__btn--next"),
+        prevEl: sliderEl.querySelector(".service-card-swiper__btn--prev"),
+      },
+      pagination: {
+        el: sliderEl.querySelector(".service-card-swiper__pagination"),
+        clickable: true,
+        type: "bullets",
+        bulletActiveClass: "service-card-swiper__bullet--active",
+        bulletClass: "service-card-swiper__bullet",
+        bulletElement: "span",
+      },
+    });
+  });
+
   const heroSlider = new Swiper(".hero-slider__slides-wrapper", {
     modules: [EffectFade, Autoplay],
     slidesPerView: 1,

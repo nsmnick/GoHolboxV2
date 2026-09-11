@@ -15,6 +15,7 @@ import initRouteMap from "./route-map";
 import initPlanyoPlanSwitcher from "./planyo-plan-switcher";
 import initSupportPanel from "./support-panel";
 import initCustomSelects from "./custom-select";
+import initHeroWave from "./hero-wave";
 
 function ready(fn) {
   if (document.readyState !== "loading") {
@@ -40,4 +41,5 @@ ready(() => {
   initPlanyoPlanSwitcher();
   initSupportPanel();
   initCustomSelects();
+  initHeroWave();
 });
