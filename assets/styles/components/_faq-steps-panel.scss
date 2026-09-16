@@ -1,0 +1,76 @@
+// Numbered FAQ list, styled after .card-panel's own numbered-step pattern
+// (gold circle + heading + text). Was previously unstyled and rendered as
+// raw text — no SCSS or generic panel wrapper existed for this block at all.
+.faq-steps-panel {
+  padding: 40px 0 60px;
+
+  @include panel-settings-modifiers;
+
+  @include bp(lap) {
+    padding: 40px 0 80px;
+  }
+
+  &__heading {
+    text-align: center;
+    color: $color-ght-teal;
+    margin: 0 0 32px;
+    @include panel-heading;
+  }
+
+  &__list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  &__number {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    background: $color-ght-gold;
+    color: $color-white;
+    border-radius: 50%;
+    font-family: get-font-family("main");
+    font-size: to-rem(13);
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  &__step-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__step-heading {
+    margin: 0 0 6px;
+    color: $color-ght-dark;
+    font-family: get-font-family("main");
+    font-size: to-rem(18);
+    font-weight: 700;
+  }
+
+  &__step-text {
+    color: $color-dark-grey;
+    font-family: get-font-family("main");
+    font-size: to-rem(15);
+    line-height: 1.6;
+
+    p {
+      margin: 0 0 0.75em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

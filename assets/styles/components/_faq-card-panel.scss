@@ -1,0 +1,37 @@
+// A simple centred heading + intro text card, used as the lead-in above
+// FAQ Steps Panel. Was previously unstyled and rendered as raw text — no
+// SCSS or generic panel wrapper existed for this block at all.
+.faq-card-panel {
+  padding: 60px 0 0;
+
+  @include panel-settings-modifiers;
+
+  @include bp(lap) {
+    padding: 80px 0 0;
+  }
+
+  &__heading {
+    text-align: center;
+    color: $color-ght-teal;
+    margin: 0 0 16px;
+    @include panel-heading;
+  }
+
+  &__content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    color: $color-dark-grey;
+    font-family: get-font-family("main");
+    font-size: to-rem(17);
+    line-height: 1.6;
+
+    p {
+      margin: 0 0 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

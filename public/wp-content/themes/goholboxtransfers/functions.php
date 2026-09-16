@@ -348,6 +348,29 @@ function ght_register_post_types()
         'hierarchical'      => true,
         'show_in_rest'      => true,
     ]);
+
+    register_post_type('activities', [
+        'labels' => [
+            'name'          => __('Activities'),
+            'singular_name' => __('Activity'),
+            'menu_name'     => __('Activities'),
+            'add_new'       => __('Add New Activity'),
+            'add_new_item'  => __('Add New Activity'),
+            'edit_item'     => __('Edit Activity'),
+            'all_items'     => __('All Activities'),
+            'not_found'     => __('No Activities found.'),
+        ],
+        'menu_icon'     => 'dashicons-palmtree',
+        'public'        => true,
+        'has_archive'   => true,
+        'rewrite'       => ['slug' => 'activities'],
+        // 'editor' enables the block editor canvas on Activity posts, so any
+        // ACF block can be added — single-activities.php calls the_content()
+        // to actually render whatever's placed there, below the fixed
+        // hero/introduction/content_sections fields.
+        'supports'      => ['title', 'thumbnail', 'editor'],
+        'show_in_rest'  => true,
+    ]);
 }
 
 // ─── Categories dropdown helper (used by the Booking Panel block) ─────────

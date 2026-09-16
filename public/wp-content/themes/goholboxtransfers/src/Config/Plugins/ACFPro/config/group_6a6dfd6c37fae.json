@@ -90,6 +90,28 @@
                     "parent_repeater": "field_6a6dfd7eeb3a0"
                 }
             ]
+        },
+        {
+            "key": "field_553c537a00106",
+            "label": "Panel Settings",
+            "name": "panel_settings",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_69fb291ce63d8"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
