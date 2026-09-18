@@ -38,6 +38,41 @@ export default function initSliders() {
     });
   }
 
+  // Image Slider Panel — same Navigation/breakpoints config as the Airport
+  // Slider Panel above, looped per-instance so multiple Image Slider Panels
+  // on one page each get their own independently-scoped arrows instead of
+  // all sharing the first one's.
+  document.querySelectorAll(".image-slider-panel-swiper").forEach((swiperEl) => {
+    const root = swiperEl.closest(".image-slider-panel__track");
+    if (!root) return;
+
+    new Swiper(swiperEl, {
+      modules: [Navigation],
+      slidesPerView: 1,
+      centeredSlides: false,
+      spaceBetween: 20,
+      loop: true,
+      wrapperClass: "image-slider-panel__wrapper",
+      slideClass: "image-slider-panel__slide",
+      navigation: {
+        nextEl: root.querySelector(".image-slider-panel__btn--next"),
+        prevEl: root.querySelector(".image-slider-panel__btn--prev"),
+      },
+      breakpoints: {
+        600: {
+          slidesPerView: 2,
+          centeredSlides: true,
+          spaceBetween: 24,
+        },
+        960: {
+          slidesPerView: 3,
+          centeredSlides: true,
+          spaceBetween: 30,
+        },
+      },
+    });
+  });
+
   const activitiesSliderEl = document.querySelector(".activities-swiper");
   if (activitiesSliderEl) {
     new Swiper(".activities-swiper", {

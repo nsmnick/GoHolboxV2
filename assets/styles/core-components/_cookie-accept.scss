@@ -1,17 +1,17 @@
 $background-color: getcolor("white");
-$boxshadow: getcolor("black");
+$boxshadow: getcolor("ght-teal");
 
-$text-color: getcolor("black");
-$hyperlink-color: getcolor("black");
-$hyperlink-hover-color: getcolor("dark-grey");
+$text-color: getcolor("ght-dark");
+$hyperlink-color: getcolor("ght-teal");
+$hyperlink-hover-color: getcolor("ght-gold");
 
-$button-border-color: getcolor("black");
+$button-border-color: getcolor("ght-teal");
 $button-text-color: getcolor("white");
-$button-background-color: getcolor("black");
-$button-background-hover-color: getcolor("light-grey");
+$button-background-color: getcolor("ght-teal");
+$button-background-hover-color: getcolor("ght-gold");
 
-$checkbox-border-color: getcolor("black");
-$checkbox-tick-color: getcolor("black");
+$checkbox-border-color: getcolor("ght-teal");
+$checkbox-tick-color: getcolor("ght-teal");
 
 .cookie-accept {
   display: none;
@@ -151,7 +151,33 @@ $checkbox-tick-color: getcolor("black");
 
     &:hover {
       background-color: $button-background-hover-color;
-      color: getcolor("charcoal");
+      color: getcolor("ght-charcoal");
+    }
+  }
+
+  // Reject carries the same visual weight as Accept (outline rather than a
+  // muted/smaller treatment) so neither choice is nudged over the other.
+  &__reject-cookies-button {
+    background-color: transparent;
+    color: $button-background-color;
+    border: 1px solid $button-border-color;
+
+    &:hover {
+      background-color: $button-background-color;
+      color: $button-text-color;
+    }
+  }
+
+  // Manage sits apart from the Accept/Reject decision itself, so it reads
+  // as a lighter, tertiary action rather than competing with them.
+  &__manage-button {
+    background-color: transparent;
+    color: $text-color;
+    border: 1px solid getcolor("grey");
+
+    &:hover {
+      background-color: getcolor("light-grey");
+      color: $text-color;
     }
   }
 

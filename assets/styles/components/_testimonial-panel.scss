@@ -34,6 +34,8 @@
 .testimonial-panel {
   padding: 60px 0;
 
+  @include panel-settings-modifiers;
+
   @include bp(desk) {
     padding: 100px 0;
   }
@@ -42,6 +44,17 @@
     text-align: center;
     margin-bottom: 24px;
   }
+
+  // Explicit CMS "Heading Colour" choice (no colour is set by default above,
+  // so this inherits the base black heading colour until an editor picks
+  // one).
+  &.htc-white &__title { color: $color-white; }
+  &.htc-light-grey &__title { color: $color-light-grey; }
+  &.htc-grey &__title { color: $color-grey; }
+  &.htc-gold &__title { color: $color-ght-gold; }
+  &.htc-navy &__title { color: $color-ght-teal; }
+  &.htc-dark &__title { color: $color-ght-dark; }
+  &.htc-charcoal &__title { color: $color-ght-charcoal; }
 
   &__summary {
     display: flex;

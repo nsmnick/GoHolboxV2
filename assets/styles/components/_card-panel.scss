@@ -40,7 +40,7 @@
   }
 
   &__header {
-    background: $color-ght-teal;
+    background: linear-gradient(135deg, $color-ght-teal 0%, shade($color-ght-teal, 20%) 100%);
     padding: 16px 22px 14px;
   }
 

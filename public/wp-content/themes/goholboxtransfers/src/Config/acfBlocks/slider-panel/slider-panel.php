@@ -43,16 +43,32 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
     <div class="airport-slider__track">
         <div class="airport-swiper swiper">
             <div class="swiper-wrapper airport-slider__wrapper">
-                <?php foreach ($slides as $slide) :
+                <?php $slide_count = count($slides); ?>
+                <?php foreach ($slides as $i => $slide) :
+                    // Swiper's loop clones the last slide to sit in front of
+                    // slide 0 so it can display as "previous" from the very
+                    // first paint. Rotate the reveal order by one slot to
+                    // match that visual order — previous, then current
+                    // (index 0), then next — instead of the raw array index,
+                    // which put current first and left previous fading in
+                    // dead last.
+                    $reveal_rank = ($i + 1) % $slide_count;
+
                     $post_obj = $slide['slide_post'] ?? null;
                     $post_id  = $post_obj ? $post_obj->ID : 0;
 
-                    // Pull hero_image from the selected post (handles both ID and array return formats)
-                    $hero_image = $post_id ? get_field('hero_image', $post_id) : null;
-                    if (is_array($hero_image)) {
-                        $img_id = $hero_image['ID'] ?? $hero_image['id'] ?? 0;
-                    } else {
-                        $img_id = (int) $hero_image;
+                    // Featured Image first (see single-airports.php), falling
+                    // back to the old "Hero Image" ACF field for posts that
+                    // don't have one set yet.
+                    $img_id = $post_id ? get_post_thumbnail_id($post_id) : 0;
+
+                    if (!$img_id) {
+                        $hero_image = $post_id ? get_field('hero_image', $post_id) : null;
+                        if (is_array($hero_image)) {
+                            $img_id = $hero_image['ID'] ?? $hero_image['id'] ?? 0;
+                        } else {
+                            $img_id = (int) $hero_image;
+                        }
                     }
 
                     $heading   = $slide['slide_heading'] ?? '';
@@ -61,7 +77,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
                     $colour    = $slide['button']['button_colour'] ?? 'gold';
                     $btn_class = 'button' . ($colour !== 'gold' ? ' button--' . $colour : '');
                 ?>
-                    <div class="swiper-slide airport-slider__slide">
+                    <div class="swiper-slide airport-slider__slide animate slide-left" style="animation-delay: <?php echo esc_attr($reveal_rank * 0.08); ?>s;">
                         <div class="airport-slider__card">
                             <?php if ($img_id) : ?>
                                 <div class="airport-slider__card-image">
@@ -85,6 +101,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
                                         <?php if (!empty($link['target'])) : ?>target="<?php echo esc_attr($link['target']); ?>" rel="noopener noreferrer"<?php endif; ?>
                                     >
                                         <?php echo esc_html($link['title'] ?: 'Find out more'); ?>
+                                        <?php if ($post_id) : ?><span class="sr-only"> about <?php echo esc_html(get_the_title($post_id)); ?></span><?php endif; ?>
                                     </a>
                                 <?php endif; ?>
                             </div>

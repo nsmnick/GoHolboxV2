@@ -1,49 +1,82 @@
 @import "../setup/colors";
 
 .feature-panel {
-    display: flex;
-    flex-direction: column;
-    min-height: 480px;
+    // No Panel Settings clone on this block, so default top/bottom spacing
+    // is fixed here directly rather than coming from tp-/bp- classes.
+    padding: 60px 0;
 
-    @media (min-width: 768px) {
-        flex-direction: row;
+    @include bp(desk) {
+        padding: 100px 0;
     }
 
-    &__item {
-        flex: 1;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        background-color: $color-ght-dark;
-        min-height: 360px;
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
 
-        @media (min-width: 768px) {
-            min-height: 480px;
+        &--two {
+            @include bp(lap) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &--three {
+            @include bp(lap) {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
 
+    &__card {
+        position: relative;
+        display: flex;
+        min-height: 360px;
+        overflow: hidden;
+        background-color: $color-ght-dark;
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba($color-ght-dark, 0.15);
+
+        @include bp(lap) {
+            min-height: 420px;
+        }
+    }
+
+    // Darkens continuously top-to-bottom, unlike .hero-panel__overlay (which
+    // clears to fully transparent around its midpoint on purpose, since the
+    // hero is tall enough to show the image clearly there) — these cards
+    // are short enough that the same dip left a bright, undarkened gap.
     &__overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.75) 0%,
-            rgba(0, 0, 0, 0.2) 50%,
-            rgba(0, 0, 0, 0.1) 100%
+            to bottom,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0.25) 35%,
+            rgba(0, 0, 0, 0.55) 65%,
+            rgba(0, 0, 0, 0.85) 100%
         );
         transition: background-color 0.3s ease;
     }
 
     &__content {
-        position: absolute;
-        inset: 0;
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
+        // Shifted down from true centre via the extra top padding below,
+        // rather than flex-end (anchoring hard to the bottom edge) — on
+        // cards with taller content (heading + subheading + button), a full
+        // bottom anchor overflowed past the card's top and got clipped by
+        // its overflow:hidden.
         justify-content: center;
-        padding: 2rem 1.5rem;
+        width: 100%;
+        height: 100%;
+        padding: 6rem 1.5rem 1.5rem;
         text-align: center;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     &__heading {
@@ -52,8 +85,10 @@
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         transition: transform 0.3s ease;
         @include panel-heading;
-        // Spacing to the rest of &__content comes from its flex `gap`, not
-        // the heading's own margin.
+        // Spacing to the subheading below comes from &__content's flex
+        // `gap`, not the heading's own margin — this card stacks
+        // heading+subheading+button tightly, so the shared panel-heading
+        // margin would double up with that gap.
         margin: 0;
     }
 
@@ -66,11 +101,11 @@
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
-    &__item:hover &__overlay {
+    &__card:hover &__overlay {
         background-color: rgba(0, 0, 0, 0.15);
     }
 
-    &__item:hover &__heading {
+    &__card:hover &__heading {
         transform: translateY(-4px);
     }
 
@@ -80,7 +115,7 @@
             transition: none;
         }
 
-        &__item:hover &__heading {
+        &__card:hover &__heading {
             transform: none;
         }
     }

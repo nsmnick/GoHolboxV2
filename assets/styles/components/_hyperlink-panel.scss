@@ -5,11 +5,23 @@
     border-top: 1px solid $color-light-grey;
     border-bottom: 1px solid $color-light-grey;
 
+    @include panel-settings-modifiers;
+
     &__heading {
         color: $color-ght-teal;
         text-align: center;
         @include panel-heading;
     }
+
+    // Explicit CMS "Heading Colour" choice, overriding the hardcoded navy
+    // default above when an editor deliberately picks one.
+    &.htc-white .hyperlink-panel__heading { color: $color-white; }
+    &.htc-light-grey .hyperlink-panel__heading { color: $color-light-grey; }
+    &.htc-grey .hyperlink-panel__heading { color: $color-grey; }
+    &.htc-gold .hyperlink-panel__heading { color: $color-ght-gold; }
+    &.htc-navy .hyperlink-panel__heading { color: $color-ght-teal; }
+    &.htc-dark .hyperlink-panel__heading { color: $color-ght-dark; }
+    &.htc-charcoal .hyperlink-panel__heading { color: $color-ght-charcoal; }
 
     &__list {
         list-style: none;

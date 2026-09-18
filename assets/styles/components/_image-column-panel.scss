@@ -1,6 +1,8 @@
 .image-column-panel {
   padding: 60px 0;
 
+  @include panel-settings-modifiers;
+
   @include bp(desk) {
     padding: 100px 0;
   }

@@ -75,7 +75,10 @@
 
   &__label {
     display: block;
-    color: rgba($color-ght-teal, 0.75);
+    // Solid dark, not a teal tint — the brand teal only hits ~3.3:1 contrast
+    // on white even at full opacity, below WCAG AA's 4.5:1 minimum for this
+    // bold 11px label text. Matches the __select value text colour below.
+    color: $color-ght-dark;
     font-family: get-font-family("main");
     font-size: to-rem(11);
     font-weight: 700;

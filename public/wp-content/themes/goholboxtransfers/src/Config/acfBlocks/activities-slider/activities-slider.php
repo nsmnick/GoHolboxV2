@@ -19,7 +19,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
 
 ?>
 
-<section class="activities-slider animate fade-in <?php echo $generic_block_settings_classes; ?>">
+<section class="activities-slider <?php echo $generic_block_settings_classes; ?>">
 
     <?php if ($slider_heading || $slider_intro) : ?>
     <div class="activities-slider__intro">
@@ -35,15 +35,22 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
     <div class="activities-slider__track">
         <div class="activities-swiper swiper">
             <div class="swiper-wrapper activities-slider__wrapper">
-                <?php foreach ($slider_items as $slide) :
+                <?php foreach ($slider_items as $i => $slide) :
                     $post_obj = $slide['slide_post'] ?? null;
                     $post_id  = $post_obj ? $post_obj->ID : 0;
 
-                    $hero_image = $post_id ? get_field('hero_image', $post_id) : null;
-                    if (is_array($hero_image)) {
-                        $img_id = $hero_image['ID'] ?? $hero_image['id'] ?? 0;
-                    } else {
-                        $img_id = (int) $hero_image;
+                    // Featured Image first (see single-activities.php), falling
+                    // back to the old "Hero Image" ACF field for posts that
+                    // don't have one set yet.
+                    $img_id = $post_id ? get_post_thumbnail_id($post_id) : 0;
+
+                    if (!$img_id) {
+                        $hero_image = $post_id ? get_field('hero_image', $post_id) : null;
+                        if (is_array($hero_image)) {
+                            $img_id = $hero_image['ID'] ?? $hero_image['id'] ?? 0;
+                        } else {
+                            $img_id = (int) $hero_image;
+                        }
                     }
 
                     $heading   = $slide['slide_heading'] ?? '';
@@ -52,7 +59,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
                     $colour    = $slide['button']['button_colour'] ?? 'gold';
                     $btn_class = 'button' . ($colour !== 'gold' ? ' button--' . $colour : '');
                 ?>
-                    <div class="swiper-slide activities-slider__slide">
+                    <div class="swiper-slide activities-slider__slide animate slide-left" style="animation-delay: <?php echo esc_attr($i * 0.08); ?>s;">
                         <div class="activities-slider__card">
                             <?php if ($img_id) : ?>
                                 <div class="activities-slider__card-image">
@@ -76,6 +83,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
                                         <?php if (!empty($link['target'])) : ?>target="<?php echo esc_attr($link['target']); ?>" rel="noopener noreferrer"<?php endif; ?>
                                     >
                                         <?php echo esc_html($link['title'] ?: 'Find out more'); ?>
+                                        <?php if ($post_id) : ?><span class="sr-only"> about <?php echo esc_html(get_the_title($post_id)); ?></span><?php endif; ?>
                                     </a>
                                 <?php endif; ?>
                             </div>

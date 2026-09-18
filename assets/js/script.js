@@ -16,6 +16,7 @@ import initPlanyoPlanSwitcher from "./planyo-plan-switcher";
 import initSupportPanel from "./support-panel";
 import initCustomSelects from "./custom-select";
 import initHeroWave from "./hero-wave";
+import initVideoFacade from "./video-facade";
 
 function ready(fn) {
   if (document.readyState !== "loading") {
@@ -42,4 +43,5 @@ ready(() => {
   initSupportPanel();
   initCustomSelects();
   initHeroWave();
+  initVideoFacade();
 });

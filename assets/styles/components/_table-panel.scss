@@ -4,6 +4,8 @@
     padding: 60px 0;
     scroll-margin-top: 140px;
 
+    @include panel-settings-modifiers;
+
     &__heading {
         color: $color-ght-teal;
         text-align: center;
@@ -28,7 +30,7 @@
         max-width: 720px;
         margin: 0 auto 2.5rem;
         text-align: center;
-        color: $color-ght-charcoal;
+        color: rgba($color-ght-teal, 0.75);
         line-height: 1.7;
 
         p:last-child {
@@ -38,9 +40,10 @@
 
     &__wrap {
         overflow-x: auto;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
-        border-radius: 8px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        border-radius: 20px;
+        box-shadow: 0 16px 40px rgba($color-ght-teal, 0.12);
     }
 
     //
@@ -76,7 +79,7 @@
     }
 
     // Dark backgrounds need the heading/intro flipped to light text —
-    // otherwise the default navy/charcoal copy disappears into them.
+    // otherwise the default teal/charcoal copy disappears into them.
     &.bgc-navy,
     &.bgc-dark,
     &.bgc-charcoal {
@@ -89,6 +92,20 @@
         }
     }
 
+    // Explicit CMS "Heading Colour" choice — wins over the automatic
+    // background-contrast swap above since it comes later in the
+    // stylesheet at the same specificity, letting an editor override the
+    // default when they deliberately pick one. The intro text picks up the
+    // same colour as the heading rather than getting its own separate
+    // field.
+    &.htc-white &__heading, &.htc-white &__intro { color: $color-white; }
+    &.htc-light-grey &__heading, &.htc-light-grey &__intro { color: $color-light-grey; }
+    &.htc-grey &__heading, &.htc-grey &__intro { color: $color-grey; }
+    &.htc-gold &__heading, &.htc-gold &__intro { color: $color-ght-gold; }
+    &.htc-navy &__heading, &.htc-navy &__intro { color: $color-ght-teal; }
+    &.htc-dark &__heading, &.htc-dark &__intro { color: $color-ght-dark; }
+    &.htc-charcoal &__heading, &.htc-charcoal &__intro { color: $color-ght-charcoal; }
+
     &__table {
         width: 100%;
         border-collapse: collapse;
@@ -100,13 +117,14 @@
         }
 
         thead th {
-            background: $color-ght-teal;
+            // Subtle depth rather than a flat fill.
+            background: linear-gradient(135deg, #1c5a8f, $color-ght-teal);
             color: $color-white;
-            font-weight: 700;
+            font-weight: 500;
             font-size: to-rem(13);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            padding: 16px 14px;
+            padding: 22px 20px;
             text-align: center;
 
             @include bp(lap) {
@@ -120,14 +138,16 @@
             }
         }
 
-        td {
-            padding: 14px;
-            border-bottom: 1px solid $color-light-grey;
-            vertical-align: middle;
+        // Zebra striping carries the row apart instead of border lines —
+        // applied to the row itself so it's consistent across every cell,
+        // not just &__row-label.
+        tbody tr:nth-child(even) {
+            background: rgba($color-ght-teal, 0.035);
         }
 
-        tr:last-child td {
-            border-bottom: none;
+        td {
+            padding: 18px 20px;
+            vertical-align: middle;
         }
     }
 
@@ -138,24 +158,20 @@
         font-weight: 400;
         text-transform: none;
         letter-spacing: normal;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     &__row-label {
-        font-weight: 700;
-        color: $color-ght-dark;
+        font-weight: 500;
+        color: $color-ght-teal;
         min-width: 140px;
         text-align: left;
-
-        tbody tr:nth-child(even) & {
-            background: rgba(0, 70, 123, 0.03);
-        }
     }
 
     &__value {
         text-align: center;
-        font-weight: 700;
-        color: $color-ght-charcoal;
+        font-weight: 400;
+        color: $color-ght-teal;
         white-space: nowrap;
         font-size: to-rem(16);
 

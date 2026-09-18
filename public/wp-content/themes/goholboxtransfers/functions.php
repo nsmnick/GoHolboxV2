@@ -54,6 +54,8 @@ class Theme_Setup
     {
         add_theme_support('html5', ['gallery', 'caption']);
         add_theme_support('post-thumbnails');
+
+        add_image_size('hero-slide', 1280, 720, true);
     }
 
     public function registerNavMenus()
