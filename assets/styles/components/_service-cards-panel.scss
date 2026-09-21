@@ -149,17 +149,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    // Gap is 0, not the old 6px — each bullet's own hit area (see below)
+    // was widened to 24px for a proper touch target, so they now sit
+    // edge-to-edge rather than needing extra gap between them.
+    gap: 0;
   }
 
+  // Visible dot stays 8px, but the clickable span itself is padded out to a
+  // proper touch target (PageSpeed flagged the old 8px/6px-gap dots as both
+  // too small and too close together) — the dot is drawn via ::before so it
+  // stays centred inside the larger invisible hit area.
   .service-card-swiper__bullet {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba($color-white, 0.6);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 
-    &--active {
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba($color-white, 0.6);
+    }
+
+    &--active::before {
       background: $color-ght-gold;
     }
   }

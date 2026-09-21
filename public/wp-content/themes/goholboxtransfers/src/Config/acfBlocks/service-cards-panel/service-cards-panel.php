@@ -96,7 +96,7 @@ if (!$preview_popup_image && !$hide_panel) {
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
                                         </button>
                                     </div>
-                                    <div class="service-card-swiper__pagination"></div>
+                                    <div class="service-card-swiper__pagination" role="group" aria-label="Choose an image"></div>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>

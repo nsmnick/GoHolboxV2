@@ -6,6 +6,7 @@ import {
   EffectFade,
   Autoplay,
   Thumbs,
+  A11y,
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -96,7 +97,7 @@ export default function initSliders() {
   const imageAndTextSlider = new Swiper(
     ".text-and-image-slider__slides-wrapper",
     {
-      modules: [Autoplay, Pagination],
+      modules: [Autoplay, Pagination, A11y],
       slidesPerView: 1,
       spaceBetween: 50,
       loop: true,
@@ -114,6 +115,12 @@ export default function initSliders() {
         bulletActiveClass: "text-and-image-slider__pagination__bullet--active",
         bulletClass: "text-and-image-slider__pagination__bullet",
         bulletElement: "div",
+      },
+      // A11y module gives the pagination container a valid role (replacing
+      // the plain <div aria-label="Choose an image"> below, which PageSpeed
+      // flags as an invalid ARIA host) and labels each bullet "Go to slide N".
+      a11y: {
+        paginationBulletMessage: "Go to slide {{index}}",
       },
       navigation: false,
     },
@@ -134,7 +141,7 @@ export default function initSliders() {
     }
 
     new Swiper(sliderEl, {
-      modules: [Navigation, Pagination],
+      modules: [Navigation, Pagination, A11y],
       slidesPerView: 1,
       loop: true,
       navigation: {
@@ -148,6 +155,9 @@ export default function initSliders() {
         bulletActiveClass: "service-card-swiper__bullet--active",
         bulletClass: "service-card-swiper__bullet",
         bulletElement: "span",
+      },
+      a11y: {
+        paginationBulletMessage: "Go to slide {{index}}",
       },
     });
   });
