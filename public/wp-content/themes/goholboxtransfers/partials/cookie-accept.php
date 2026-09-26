@@ -2,11 +2,10 @@
     <div class="cookie-accept__container cookie-accept__preface">
         <div class="cookie-accept__content">
             <h3>We respect your privacy</h3>
-            <p>Some of these cookies are essential, while others help us improve your experience by providing insight into how the site is being used and helping us serve relevant marketing. You can accept all cookies, reject non-essential cookies, or manage your preferences below. For more details, see our <a href="/privacy-policy/">privacy and cookie policy</a>.</p>
+            <p>Some of these cookies are essential, while others help us improve your experience by providing insight into how the site is being used and helping us serve relevant marketing. You can accept all cookies or manage your preferences below. For more details, see our <a href="/privacy-policy/">privacy and cookie policy</a>.</p>
         </div>
         <div class="cookie-accept__controls">
             <button class="cookie-accept__button cookie-accept__manage-button">Manage cookies</button>
-            <button class="cookie-accept__button cookie-accept__reject-cookies-button">Reject all</button>
             <button class="cookie-accept__button cookie-accept__accept-cookies-button">Accept all</button>
         </div>
     </div>

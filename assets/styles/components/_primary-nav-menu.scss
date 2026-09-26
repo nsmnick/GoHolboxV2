@@ -16,8 +16,19 @@
 .main-menu {
   background-color: getcolor("light-grey");
   width: 100vw;
+  // 100vh doesn't account for mobile browsers' collapsing/expanding address
+  // bar, so it can leave a gap at the bottom or clip the drawer short
+  // depending on browser-chrome state — 100dvh tracks the actual visible
+  // viewport instead. vh kept first as a fallback for older browsers.
   height: 100vh;
-  position: absolute;
+  height: 100dvh;
+  // Fixed, not absolute — .header-detail-container (this element's nearest
+  // ancestor) has its own position:relative for unrelated reasons, which
+  // was quietly becoming the containing block for `top: 0` here instead of
+  // the full-viewport header, leaving a sliver of the page visible above
+  // the drawer equal to the header's own top padding. Fixed positioning
+  // anchors to the real viewport regardless of what any ancestor does.
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
