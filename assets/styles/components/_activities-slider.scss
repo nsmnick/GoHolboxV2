@@ -1,8 +1,65 @@
 .activities-slider {
   padding: 60px 0 80px;
-  background-color: $color-ght-dark;
   overflow: hidden;
   position: relative;
+
+  background-color: $color-ght-dark;
+  --slider-edge-colour: #{$color-ght-dark};
+
+  @include panel-settings-modifiers;
+
+  // The ::before edge-fade reads from this variable rather than a fixed
+  // colour, so it blends into whichever Background Colour the CMS panel
+  // setting renders instead of leaving a mismatched patch.
+  &.bgc-white { --slider-edge-colour: #{$color-white}; }
+  &.bgc-light-grey { --slider-edge-colour: #{$color-light-grey}; }
+  &.bgc-grey { --slider-edge-colour: #{$color-grey}; }
+  &.bgc-gold { --slider-edge-colour: #{$color-ght-gold}; }
+  &.bgc-navy { --slider-edge-colour: #{$color-ght-teal}; }
+  &.bgc-dark { --slider-edge-colour: #{$color-ght-dark}; }
+  &.bgc-charcoal { --slider-edge-colour: #{$color-ght-charcoal}; }
+
+  // The intro heading/subheading sit directly on the flat background (the
+  // per-card text has its own image overlay), so swap to dark text on the
+  // lighter background options to keep it readable.
+  &.bgc-white,
+  &.bgc-light-grey,
+  &.bgc-grey,
+  &.bgc-gold {
+    .activities-slider__heading {
+      color: $color-ght-dark;
+    }
+
+    .activities-slider__subheading {
+      color: rgba($color-ght-dark, 0.7);
+    }
+  }
+
+  // Explicit CMS "Heading Colour" choice, overriding the default heading
+  // colour when an editor deliberately picks one. The subheading picks up
+  // the same colour as the heading rather than getting its own field.
+  &.htc-white .activities-slider__heading, &.htc-white .activities-slider__subheading { color: $color-white; }
+  &.htc-light-grey .activities-slider__heading, &.htc-light-grey .activities-slider__subheading { color: $color-light-grey; }
+  &.htc-grey .activities-slider__heading, &.htc-grey .activities-slider__subheading { color: $color-grey; }
+  &.htc-gold .activities-slider__heading, &.htc-gold .activities-slider__subheading { color: $color-ght-gold; }
+  &.htc-navy .activities-slider__heading, &.htc-navy .activities-slider__subheading { color: $color-ght-teal; }
+  &.htc-dark .activities-slider__heading, &.htc-dark .activities-slider__subheading { color: $color-ght-dark; }
+  &.htc-charcoal .activities-slider__heading, &.htc-charcoal .activities-slider__subheading { color: $color-ght-charcoal; }
+
+  // Nav button colours default to the gold-circle/dark-icon combo, which
+  // reads fine against the panel's own teal/dark/charcoal backgrounds. On
+  // the lighter CMS-selectable backgrounds that pairing loses contrast, so
+  // those swap to a solid teal circle with a white icon instead.
+  --slider-nav-bg: #{$color-ght-gold};
+  --slider-nav-icon: #{$color-ght-dark};
+
+  &.bgc-white,
+  &.bgc-light-grey,
+  &.bgc-grey,
+  &.bgc-gold {
+    --slider-nav-bg: #{$color-ght-teal};
+    --slider-nav-icon: #{$color-white};
+  }
 
   // Fade previous slide out as it moves off the left edge
   &::before {
@@ -12,7 +69,7 @@
     left: 0;
     bottom: 0;
     width: 320px;
-    background: linear-gradient(to right, $color-ght-dark 40%, transparent 100%);
+    background: linear-gradient(to right, var(--slider-edge-colour) 40%, transparent 100%);
     z-index: 10;
     pointer-events: none;
     display: none;
@@ -197,9 +254,9 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: $color-ght-gold;
+    background: var(--slider-nav-bg);
     border: none;
-    color: $color-ght-dark;
+    color: var(--slider-nav-icon);
     display: flex;
     align-items: center;
     justify-content: center;

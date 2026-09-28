@@ -7,6 +7,23 @@
     padding: 80px 0 100px;
   }
 
+  @include panel-settings-modifiers;
+
+  // Nav button colours default to the gold-circle/dark-icon combo, which
+  // reads fine against the panel's own teal/dark/charcoal backgrounds. On
+  // the lighter CMS-selectable backgrounds that pairing loses contrast, so
+  // those swap to a solid teal circle with a white icon instead.
+  --slider-nav-bg: #{$color-ght-gold};
+  --slider-nav-icon: #{$color-ght-dark};
+
+  &.bgc-white,
+  &.bgc-light-grey,
+  &.bgc-grey,
+  &.bgc-gold {
+    --slider-nav-bg: #{$color-ght-teal};
+    --slider-nav-icon: #{$color-white};
+  }
+
   &__intro {
     text-align: center;
     margin-bottom: 48px;
@@ -26,6 +43,17 @@
 
     p { margin: 0; }
   }
+
+  // Explicit CMS "Heading Colour" choice, overriding the default heading
+  // colour when an editor deliberately picks one. The subheading picks up
+  // the same colour as the heading rather than getting its own field.
+  &.htc-white .airport-slider__heading, &.htc-white .airport-slider__subheading { color: $color-white; }
+  &.htc-light-grey .airport-slider__heading, &.htc-light-grey .airport-slider__subheading { color: $color-light-grey; }
+  &.htc-grey .airport-slider__heading, &.htc-grey .airport-slider__subheading { color: $color-grey; }
+  &.htc-gold .airport-slider__heading, &.htc-gold .airport-slider__subheading { color: $color-ght-gold; }
+  &.htc-navy .airport-slider__heading, &.htc-navy .airport-slider__subheading { color: $color-ght-teal; }
+  &.htc-dark .airport-slider__heading, &.htc-dark .airport-slider__subheading { color: $color-ght-dark; }
+  &.htc-charcoal .airport-slider__heading, &.htc-charcoal .airport-slider__subheading { color: $color-ght-charcoal; }
 
   // ─── Track ────────────────────────────────────────────────────────────────
 
@@ -174,9 +202,9 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: $color-ght-gold;
+    background: var(--slider-nav-bg);
     border: none;
-    color: $color-ght-dark;
+    color: var(--slider-nav-icon);
     display: flex;
     align-items: center;
     justify-content: center;

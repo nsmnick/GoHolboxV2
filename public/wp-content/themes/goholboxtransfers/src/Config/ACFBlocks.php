@@ -61,6 +61,8 @@ class ACFBlocks
     }
 
     // Remove WP default blocks and allocate which blocks can be used by pages and posts by default.
+    // Destinations and Activities get the same panel blocks as pages, so the
+    // client can build them up below the fixed hero/intro/sections fields.
     public static function set_allowed_block_types($block_editor_context, $editor_context)
     {
         if (!empty($editor_context->post)) {
@@ -70,7 +72,7 @@ class ACFBlocks
                 );
             }
 
-            if ('page' === $editor_context->post->post_type) {
+            if (in_array($editor_context->post->post_type, ['page', 'destinations', 'activities'], true)) {
                 return array(
                     'acf/example-text-panel',
                     'acf/hero-panel',

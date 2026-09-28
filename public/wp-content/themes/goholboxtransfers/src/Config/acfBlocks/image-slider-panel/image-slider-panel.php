@@ -13,7 +13,7 @@ if (!$preview_popup_image && !$hide_panel) {
     }
 
     // Duplicate images until there are at least 6, for a clean Swiper loop —
-    // same convention as the Airport Slider Panel.
+    // same convention as the Destination Slider Panel.
     $slides = $images;
     if (count($slides) < 6) {
         while (count($slides) < 6) {
@@ -43,7 +43,7 @@ if (!$preview_popup_image && !$hide_panel) {
                 <?php foreach ($slides as $i => $slide_image) :
                     // Swiper's loop clones the last slide to sit in front of
                     // slide 0 so it can display as "previous" from the very
-                    // first paint — see the Airport Slider Panel for the
+                    // first paint — see the Destination Slider Panel for the
                     // same fix. Rotate the reveal order by one slot to
                     // match: previous, then current, then next.
                     $reveal_rank = ($i + 1) % $slide_count;

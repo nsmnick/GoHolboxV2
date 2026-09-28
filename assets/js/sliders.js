@@ -11,9 +11,28 @@ import {
 import "swiper/css";
 import "swiper/css/effect-fade";
 
+// Swiper's loop mode needs noticeably more slides than are visible at once
+// (roughly 2× the largest slidesPerView). With fewer — e.g. 3 cards on a
+// 3-per-view desktop layout — it silently disables loop, leaving nothing to
+// scroll and the arrows doing nothing. Duplicate the existing slides until
+// there are enough, as Swiper's own warning recommends.
+function ensureLoopSlides(swiperEl, slideSelector, minSlides) {
+  const wrapper = swiperEl.querySelector(slideSelector)?.parentElement;
+  if (!wrapper) return;
+
+  const originals = Array.from(wrapper.querySelectorAll(`:scope > ${slideSelector}`));
+  if (originals.length < 2) return;
+
+  while (wrapper.querySelectorAll(`:scope > ${slideSelector}`).length < minSlides) {
+    originals.forEach((slide) => wrapper.appendChild(slide.cloneNode(true)));
+  }
+}
+
 export default function initSliders() {
   const airportSliderEl = document.querySelector(".airport-swiper");
   if (airportSliderEl) {
+    ensureLoopSlides(airportSliderEl, ".swiper-slide", 6);
+
     new Swiper(".airport-swiper", {
       modules: [Navigation],
       slidesPerView: 1,
@@ -47,6 +66,8 @@ export default function initSliders() {
     const root = swiperEl.closest(".image-slider-panel__track");
     if (!root) return;
 
+    ensureLoopSlides(swiperEl, ".image-slider-panel__slide", 6);
+
     new Swiper(swiperEl, {
       modules: [Navigation],
       slidesPerView: 1,
@@ -76,6 +97,8 @@ export default function initSliders() {
 
   const activitiesSliderEl = document.querySelector(".activities-swiper");
   if (activitiesSliderEl) {
+    ensureLoopSlides(activitiesSliderEl, ".swiper-slide", 6);
+
     new Swiper(".activities-swiper", {
       modules: [Navigation],
       slidesPerView: 1,

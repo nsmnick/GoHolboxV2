@@ -30,9 +30,11 @@ ready(() => {
   initVue();
   initMenu();
   initCookieAccept();
+  // Sliders first: they can duplicate slides for loop mode, and those
+  // copies need to exist before animationsV2 starts observing .animate.
+  initSliders();
   animationsV2();
   featurePanel();
-  initSliders();
   initAccordion();
   initFaqAccordions();
   initToggleContent();

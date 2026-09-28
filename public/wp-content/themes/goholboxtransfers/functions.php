@@ -373,6 +373,25 @@ function ght_register_post_types()
         'supports'      => ['title', 'thumbnail', 'editor'],
         'show_in_rest'  => true,
     ]);
+
+    register_post_type('destinations', [
+        'labels' => [
+            'name'          => __('Destinations'),
+            'singular_name' => __('Destination'),
+            'menu_name'     => __('Destinations'),
+            'add_new'       => __('Add New Destination'),
+            'add_new_item'  => __('Add New Destination'),
+            'edit_item'     => __('Edit Destination'),
+            'all_items'     => __('All Destinations'),
+            'not_found'     => __('No Destinations found.'),
+        ],
+        'menu_icon'     => 'dashicons-location',
+        'public'        => true,
+        'has_archive'   => true,
+        'rewrite'       => ['slug' => 'destinations'],
+        'supports'      => ['title', 'thumbnail', 'editor'],
+        'show_in_rest'  => true,
+    ]);
 }
 
 // ─── Categories dropdown helper (used by the Booking Panel block) ─────────

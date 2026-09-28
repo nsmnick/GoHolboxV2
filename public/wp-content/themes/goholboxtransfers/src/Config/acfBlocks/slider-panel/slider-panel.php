@@ -57,7 +57,7 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
                     $post_obj = $slide['slide_post'] ?? null;
                     $post_id  = $post_obj ? $post_obj->ID : 0;
 
-                    // Featured Image first (see single-airports.php), falling
+                    // Featured Image first (see single-activities.php), falling
                     // back to the old "Hero Image" ACF field for posts that
                     // don't have one set yet.
                     $img_id = $post_id ? get_post_thumbnail_id($post_id) : 0;

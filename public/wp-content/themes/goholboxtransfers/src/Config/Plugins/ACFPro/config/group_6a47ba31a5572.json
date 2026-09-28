@@ -1,6 +1,6 @@
 {
     "key": "group_6a47ba31a5572",
-    "title": "Airport Slider Panel",
+    "title": "Destination Slider Panel",
     "fields": [
         {
             "key": "field_6a47ba31b36fd",
@@ -81,7 +81,7 @@
                         "id": ""
                     },
                     "post_type": [
-                        "airports"
+                        "destinations"
                     ],
                     "post_status": [
                         "publish"
@@ -165,5 +165,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1788969386
+    "modified": 1790614545
 }

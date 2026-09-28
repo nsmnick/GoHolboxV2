@@ -123,7 +123,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "airports"
+                "value": "destinations"
             }
         ],
         [
@@ -146,5 +146,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1788969386
+    "modified": 1790614545
 }
