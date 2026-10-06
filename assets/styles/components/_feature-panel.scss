@@ -66,15 +66,28 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        // Shifted down from true centre via the extra top padding below,
-        // rather than flex-end (anchoring hard to the bottom edge) — on
-        // cards with taller content (heading + subheading + button), a full
-        // bottom anchor overflowed past the card's top and got clipped by
-        // its overflow:hidden.
-        justify-content: center;
+        // Anchored to the bottom, not centred — a centred block whose
+        // height exceeds the card's fixed min-height just overflows evenly
+        // both ways and gets symmetrically clipped by overflow:hidden,
+        // which on a long heading left the button clipped right up against
+        // the subheading (reading as the two overlapping). Anchoring to the
+        // bottom instead means the button always sits the same safe
+        // distance from the card's bottom edge — it's the heading above
+        // that grows upward into the card as it wraps onto more lines,
+        // never the other way round.
+        justify-content: flex-end;
+        // This codebase has no global box-sizing:border-box reset, so with
+        // the default content-box, height:100% + padding below rendered
+        // the box 2 * 1.5rem TALLER than the card itself (padding added on
+        // top of the 100%, not included within it) — the excess silently
+        // overflowed past the card's overflow:hidden edge, landing right on
+        // the button now that it's bottom-anchored. border-box makes the
+        // 100% height include the padding, so this box always matches the
+        // card's actual height exactly.
+        box-sizing: border-box;
         width: 100%;
         height: 100%;
-        padding: 6rem 1.5rem 1.5rem;
+        padding: 1.5rem;
         text-align: center;
         gap: 0.75rem;
     }
