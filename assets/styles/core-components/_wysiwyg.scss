@@ -252,3 +252,17 @@
     }
   }
 }
+
+// Headings that were hand-coloured with the editor's old "GHT Teal" swatch
+// (#009bb2, saved inline by TinyMCE as style="color: #009bb2") — remap them
+// to the heading blue so existing content matches without re-editing every
+// field. !important is the only way to beat an inline style. New content
+// should use the "GHT Heading Blue" swatch instead (functions.php).
+.wysiwyg-container {
+  :is(h1, h2, h3, h4, h5, h6)[style*="009bb2" i],
+  :is(h1, h2, h3, h4, h5, h6) [style*="009bb2" i],
+  :is(h1, h2, h3, h4, h5, h6)[style*="0, 155, 178"],
+  :is(h1, h2, h3, h4, h5, h6) [style*="0, 155, 178"] {
+    color: $color-ght-heading !important;
+  }
+}

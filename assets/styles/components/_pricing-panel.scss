@@ -197,14 +197,17 @@
     }
   }
 
+  // Sized so a price with its currency ("2,800 MXN") stays on one line
+  // inside the card rather than wrapping the currency underneath.
   &__card-price {
-    font-size: to-rem(32);
+    font-size: to-rem(26);
     font-weight: 800;
-    color: $color-ght-dark;
+    color: $color-ght-gold;
+    white-space: nowrap;
     margin: 0 0 20px;
 
     @include bp(lap) {
-      font-size: to-rem(36);
+      font-size: to-rem(30);
     }
   }
 
@@ -254,6 +257,15 @@
     .button {
       box-sizing: border-box;
       width: 100%;
+    }
+
+    // Dark grey rather than the default black text on the gold button.
+    // Excludes the white-outline and teal variants, which set their own.
+    .button:not(.button--white):not(.button--navy) {
+      &,
+      &:hover {
+        color: $color-ght-charcoal;
+      }
     }
 
     // "White outline" is Button Colour's own default, meant for dark

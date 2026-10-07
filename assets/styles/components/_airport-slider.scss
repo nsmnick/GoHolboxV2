@@ -150,7 +150,7 @@
 
     &-name {
       font-size: to-rem(26);
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.1;
       color: $color-white;
       margin: 0;
@@ -186,6 +186,15 @@
       font-size: to-rem(12);
       padding: 8px 18px;
       margin-top: 4px;
+
+      // Dark grey rather than the default black text on the gold gradient
+      // button. The white-outline and teal variants set their own.
+      &:not(.button--white):not(.button--navy) {
+        &,
+        &:hover {
+          color: $color-ght-charcoal;
+        }
+      }
     }
   }
 

@@ -29,14 +29,14 @@ if (!$hide_panel && !$preview_popup_image) {
             <div class="planyo-booking-panel__plan-picker" role="tablist" aria-label="Choose your vehicle">
                 <button type="button" class="planyo-booking-panel__plan-tab is-active" data-plan="standard_van" role="tab" aria-selected="true">
                     Standard Van
-                    <span>Up to 5 people</span>
+                    <span>1&ndash;5 people</span>
                 </button>
                 <button type="button" class="planyo-booking-panel__plan-tab" data-plan="large_van" role="tab" aria-selected="false">
-                    Large Standard Van
-                    <span>6&ndash;9 people</span>
+                    Large Van
+                    <span>6&ndash;20 people</span>
                 </button>
                 <button type="button" class="planyo-booking-panel__plan-tab" data-plan="premium_suburban" role="tab" aria-selected="false">
-                    Premium Suburban
+                    Premium Suburban / Mercedes
                     <span>1&ndash;5 people, door to door</span>
                 </button>
                 <button type="button" class="planyo-booking-panel__plan-tab" data-plan="premium_toyota" role="tab" aria-selected="false">

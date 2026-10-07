@@ -21,13 +21,19 @@
     padding: 64px 0;
   }
 
+  // Panel Settings "Background Colour" — the white widget card below then
+  // stands out against it instead of sitting white-on-white.
+  @include panel-colour-modifiers;
+
   &__widget {
     max-width: 960px;
     margin: 0 auto;
     background: $color-white;
     border-radius: 16px;
     padding: 28px 20px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    // Defined frame so the card still reads as a card on a white panel.
+    border: 1px solid rgba($color-ght-heading, 0.2);
+    box-shadow: 0 8px 30px rgba($color-ght-dark, 0.14);
 
     @include bp(lap) {
       padding: 40px;
@@ -84,12 +90,12 @@
     }
 
     &:hover {
-      border-color: $color-ght-teal;
+      border-color: $color-ght-heading;
     }
 
     &.is-active {
-      background: $color-ght-teal;
-      border-color: $color-ght-teal;
+      background: $color-ght-heading;
+      border-color: $color-ght-heading;
       color: $color-white;
 
       span {
@@ -98,7 +104,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-ght-teal;
+      outline: 2px solid $color-ght-heading;
       outline-offset: 2px;
     }
   }
@@ -212,8 +218,8 @@
     justify-content: center !important;
     flex: 0 0 auto !important;
     padding: 0 14px !important;
-    background: $color-ght-teal !important;
-    border: 1px solid $color-ght-teal !important;
+    background: $color-ght-heading !important;
+    border: 1px solid $color-ght-heading !important;
     border-top-right-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
     cursor: pointer;
@@ -310,8 +316,8 @@
   [id^="planyo_price_preview"]:not([id*="_parent"]):not([id*="_form"]):not([id="planyo_price_preview_widget"]) {
     &:not(:empty) {
       display: block !important;
-      background: rgba(0, 155, 178, 0.06) !important;
-      border: 1px solid rgba(0, 155, 178, 0.15) !important;
+      background: rgba($color-ght-heading, 0.06) !important;
+      border: 1px solid rgba($color-ght-heading, 0.15) !important;
       border-radius: 10px !important;
       padding: 18px 20px !important;
     }
@@ -343,7 +349,7 @@
       font-size: to-rem(28) !important;
       font-weight: 700 !important;
       line-height: 1.2 !important;
-      color: $color-ght-teal !important;
+      color: $color-ght-heading !important;
 
       @include bp(lap) {
         font-size: to-rem(34) !important;
@@ -383,8 +389,8 @@
     // file, not strictly required.
     &__book-btn {
       display: inline-block !important;
-      background: $color-ght-teal !important;
-      border: solid 2px $color-ght-teal !important;
+      background: $color-ght-heading !important;
+      border: solid 2px $color-ght-heading !important;
       color: $color-white !important;
       font-family: inherit !important;
       font-weight: 700 !important;
@@ -405,14 +411,14 @@
 
     &__details {
       margin-top: 16px !important;
-      border-top: 1px solid rgba(0, 155, 178, 0.15) !important;
+      border-top: 1px solid rgba($color-ght-heading, 0.15) !important;
       padding-top: 12px !important;
 
       summary {
         cursor: pointer;
         font-size: to-rem(13) !important;
         font-weight: 700 !important;
-        color: $color-ght-teal !important;
+        color: $color-ght-heading !important;
         text-decoration: underline;
 
         &:hover {

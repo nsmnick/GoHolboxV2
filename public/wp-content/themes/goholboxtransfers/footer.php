@@ -74,7 +74,6 @@ $footer_tripadvisor = get_field('footer_social_tripadvisor', 'option');
         <?php
         $footer_menu_locations = [
           'footer-menu' => 'Information',
-          'footer-menu-pickups' => 'Popular Pick Ups',
           'footer-menu-destinations' => 'Popular Destinations',
         ];
         $active_footer_menus = array_filter(array_keys($footer_menu_locations), 'has_nav_menu');

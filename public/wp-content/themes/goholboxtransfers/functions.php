@@ -61,9 +61,8 @@ class Theme_Setup
     public function registerNavMenus()
     {
         register_nav_menu('primary-menu', 'Primary Menu');
-        register_nav_menu('footer-menu', 'Footer Menu — Information');
-        register_nav_menu('footer-menu-pickups', 'Footer Menu — Popular Pick Ups');
-        register_nav_menu('footer-menu-destinations', 'Footer Menu — Popular Destinations');
+        register_nav_menu('footer-menu', 'Footer Menu — Transfer Information');
+        register_nav_menu('footer-menu-destinations', 'Footer Menu — Destinations We Travel To');
     }
 
     public function enqueueScripts()
@@ -299,12 +298,13 @@ add_filter('tiny_mce_before_init', function (array $settings): array {
         '000000', 'Black',
         '1b161c', 'GHT Dark',
         '009bb2', 'GHT Teal',
+        '0d5c69', 'GHT Heading Blue',
         'e6af2a', 'GHT Gold',
         '464749', 'GHT Charcoal',
         '888888', 'Grey',
         'ffffff', 'White',
     ]);
-    $settings['textcolor_cols'] = '7';
+    $settings['textcolor_cols'] = '8';
     $settings['textcolor_rows'] = '1';
     return $settings;
 });
