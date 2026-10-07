@@ -36,12 +36,12 @@ div.button {
   text-decoration: none;
   line-height: 1;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 400;
   width: fit-content;
 
   color: getcolor("black");
   border: solid 2px $color-ght-gold;
-  background: $color-ght-gold;
+  background: linear-gradient(135deg, lighten($color-ght-gold, 8%), darken($color-ght-gold, 6%));
   cursor: pointer;
   border-radius: 6px;
   transition: 0.15s all ease-in-out, 0.2s transform ease-out, 0.2s box-shadow ease-out;
@@ -54,10 +54,14 @@ div.button {
     font-size: to-rem(16);
   }
 
+  // Darkens the button's own gold tone rather than swapping to a fixed
+  // solid black — buttons appear on every CMS Background Colour option
+  // (including bgc-dark/bgc-charcoal), and a solid-black hover fill nearly
+  // disappears into a section that's already dark.
   &:hover {
-    background-color: getcolor("black");
-    border-color: getcolor("black");
-    color: $color-ght-gold;
+    background: linear-gradient(135deg, darken($color-ght-gold, 8%), darken($color-ght-gold, 16%));
+    border-color: darken($color-ght-gold, 10%);
+    color: getcolor("black");
     text-decoration: none;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
@@ -99,12 +103,15 @@ div.button {
   &--navy {
     color: getcolor("white");
     border: solid 2px $color-ght-teal;
-    background-color: $color-ght-teal;
+    background: linear-gradient(135deg, lighten($color-ght-teal, 8%), darken($color-ght-teal, 6%));
 
+    // Same reasoning as the default gold button's hover — darkens its own
+    // teal rather than inverting to solid white, which would nearly vanish
+    // against a bgc-white/bgc-light-grey section.
     &:hover {
-      background-color: getcolor("white");
-      border-color: $color-ght-teal;
-      color: $color-ght-teal;
+      background: linear-gradient(135deg, darken($color-ght-teal, 10%), darken($color-ght-teal, 18%));
+      border-color: darken($color-ght-teal, 12%);
+      color: getcolor("white");
     }
   }
 

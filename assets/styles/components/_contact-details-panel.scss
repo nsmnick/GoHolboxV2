@@ -7,7 +7,7 @@
 
   &__heading {
     text-align: center;
-    color: getcolor("ght-teal");
+    color: getcolor("ght-heading");
     letter-spacing: 1px;
     @include panel-heading;
   }

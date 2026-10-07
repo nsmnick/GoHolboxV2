@@ -36,7 +36,13 @@
     // Above the wave's own z-index:2 (see .hero-panel__wave) — otherwise
     // the wave (explicit z-index) would paint over this (implicit/auto).
     z-index: 3;
-    padding-bottom: 3rem;
+    // Clears the hero wave (.hero-panel__wave: 70px, 110px from bp(lap))
+    // so the title sits above it rather than on top of it.
+    padding-bottom: 90px;
+
+    @include bp(lap) {
+      padding-bottom: 140px;
+    }
   }
 
   &__eyebrow {
@@ -63,7 +69,7 @@
   &__title {
     color: $color-white;
     font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
+    font-weight: 400;
     margin: 0;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -164,7 +170,7 @@
   &__section-heading {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 700;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     margin: 0 0 20px;
     line-height: 1.2;
   }

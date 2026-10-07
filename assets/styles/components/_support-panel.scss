@@ -2,7 +2,7 @@
   padding: 60px 0;
 
   &__heading {
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     text-align: center;
     @include panel-heading;
   }
@@ -117,7 +117,7 @@
   &-heading {
     font-size: clamp(1.25rem, 2.5vw, 1.625rem);
     font-weight: 700;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     margin: 0 0 0.5rem;
   }
 

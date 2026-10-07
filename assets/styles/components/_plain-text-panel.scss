@@ -1,0 +1,46 @@
+// Plain Text Panel — a bare WYSIWYG block. Width comes entirely from the
+// shared .container + Panel Settings "Container Size" (container--small etc.
+// on the inner div); this file only adds the alignment, spacing and
+// background colour options the block's fields offer, mirroring .text-panel.
+
+.plain-text-panel.content {
+    padding: 20px 0;
+    margin: 0;
+}
+
+.plain-text-panel {
+    // Colour only — top/bottom padding already comes from .content's own
+    // tp-/bp- rules (_content.scss).
+    @include panel-colour-modifiers;
+
+    &--left .wysiwyg-container {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &--center .wysiwyg-container {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &--right .wysiwyg-container {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    // Light-on-dark once a dark Background Colour is picked.
+    &.bgc-navy,
+    &.bgc-dark,
+    &.bgc-charcoal {
+        .wysiwyg-container {
+            color: $color-white;
+
+            h1, h2, h3, h4, h5, h6, a {
+                color: $color-white;
+            }
+        }
+    }
+}

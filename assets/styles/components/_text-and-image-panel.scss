@@ -75,10 +75,6 @@
         // &__text wider than its intended share of the flex row — see the
         // min-width:0 note above — wrapping normally instead lets it break.
         overflow-wrap: break-word;
-
-        strong {
-          color: $color-ght-teal;
-        }
       }
 
       // Checklist look — circled tick instead of the shared wysiwyg dot bullet.
@@ -333,7 +329,7 @@
   &.htc-light-grey &__text .wysiwyg-container h2 { color: $color-light-grey; }
   &.htc-grey &__text .wysiwyg-container h2 { color: $color-grey; }
   &.htc-gold &__text .wysiwyg-container h2 { color: $color-ght-gold; }
-  &.htc-navy &__text .wysiwyg-container h2 { color: $color-ght-teal; }
+  &.htc-navy &__text .wysiwyg-container h2 { color: $color-ght-heading; }
   &.htc-dark &__text .wysiwyg-container h2 { color: $color-ght-dark; }
   &.htc-charcoal &__text .wysiwyg-container h2 { color: $color-ght-charcoal; }
 }

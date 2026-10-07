@@ -8,7 +8,7 @@
     @include panel-settings-modifiers;
 
     &__heading {
-        color: $color-ght-teal;
+        color: $color-ght-heading;
         text-align: center;
         @include panel-heading;
     }
@@ -19,7 +19,7 @@
     &.htc-light-grey .hyperlink-panel__heading { color: $color-light-grey; }
     &.htc-grey .hyperlink-panel__heading { color: $color-grey; }
     &.htc-gold .hyperlink-panel__heading { color: $color-ght-gold; }
-    &.htc-navy .hyperlink-panel__heading { color: $color-ght-teal; }
+    &.htc-navy .hyperlink-panel__heading { color: $color-ght-heading; }
     &.htc-dark .hyperlink-panel__heading { color: $color-ght-dark; }
     &.htc-charcoal .hyperlink-panel__heading { color: $color-ght-charcoal; }
 

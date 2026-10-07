@@ -20,7 +20,7 @@
 
     h2 {
       margin: 0 0 10px;
-      color: $color-ght-teal;
+      color: $color-ght-heading;
       @include panel-heading;
     }
   }
@@ -37,7 +37,7 @@
   &.htc-light-grey &__heading h2 { color: $color-light-grey; }
   &.htc-grey &__heading h2 { color: $color-grey; }
   &.htc-gold &__heading h2 { color: $color-ght-gold; }
-  &.htc-navy &__heading h2 { color: $color-ght-teal; }
+  &.htc-navy &__heading h2 { color: $color-ght-heading; }
   &.htc-dark &__heading h2 { color: $color-ght-dark; }
   &.htc-charcoal &__heading h2 { color: $color-ght-charcoal; }
 
@@ -75,9 +75,9 @@
       radial-gradient(circle at top left, rgba($color-white, 0.25), transparent 42%),
       linear-gradient(
         145deg,
-        lighten($color-ght-teal, 14%) 0%,
-        $color-ght-teal 48%,
-        darken($color-ght-teal, 12%) 100%
+        $color-ght-teal 0%,
+        mix($color-ght-teal, $color-ght-heading, 50%) 55%,
+        $color-ght-heading 100%
       );
     box-shadow: 0 14px 35px rgba($color-ght-dark, 0.18);
   }

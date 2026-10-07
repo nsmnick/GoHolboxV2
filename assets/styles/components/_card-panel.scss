@@ -108,7 +108,7 @@
 
   &__item-heading {
     margin: 15px 0;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(20);
     font-weight: 700;
@@ -121,7 +121,7 @@
   &.htc-light-grey &__item-heading { color: $color-light-grey; }
   &.htc-grey &__item-heading { color: $color-grey; }
   &.htc-gold &__item-heading { color: $color-ght-gold; }
-  &.htc-navy &__item-heading { color: $color-ght-teal; }
+  &.htc-navy &__item-heading { color: $color-ght-heading; }
   &.htc-dark &__item-heading { color: $color-ght-dark; }
   &.htc-charcoal &__item-heading { color: $color-ght-charcoal; }
 

@@ -10,6 +10,7 @@ $color-dark-grey: #888888;      // muted/secondary text (original #888)
 // Go Holbox Transfers brand colours
 $color-ght-gold: #e6af2a;       // accent, CTA buttons
 $color-ght-teal: #009bb2;       // booking panel background
+$color-ght-heading: #0d5c69;    // panel/section headings
 $color-ght-dark: #1b161c;       // nav/header background
 $color-ght-charcoal: #464749;   // footer background
 
@@ -34,6 +35,7 @@ $color-rgb-black: getrgb($color-black);
     "light-grey": $color-light-grey,
     "ght-gold": $color-ght-gold,
     "ght-teal": $color-ght-teal,
+    "ght-heading": $color-ght-heading,
     "ght-dark": $color-ght-dark,
     "ght-charcoal": $color-ght-charcoal,
   ),

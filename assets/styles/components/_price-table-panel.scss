@@ -10,7 +10,7 @@
   @include panel-settings-modifiers;
 
   &__heading {
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     text-align: center;
     position: relative;
     padding-bottom: 18px;
@@ -86,7 +86,7 @@
   &.htc-light-grey &__heading { color: $color-light-grey; }
   &.htc-grey &__heading { color: $color-grey; }
   &.htc-gold &__heading { color: $color-ght-gold; }
-  &.htc-navy &__heading { color: $color-ght-teal; }
+  &.htc-navy &__heading { color: $color-ght-heading; }
   &.htc-dark &__heading { color: $color-ght-dark; }
   &.htc-charcoal &__heading { color: $color-ght-charcoal; }
 

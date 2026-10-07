@@ -7,7 +7,7 @@
     text-align: center;
 
     h2 {
-      color: $color-ght-teal;
+      color: $color-ght-heading;
       font-family: get-font-family("main");
       @include panel-heading;
     }
@@ -31,7 +31,7 @@
   &.htc-light-grey .contact-cards-panel__heading h2, &.htc-light-grey .contact-cards-panel__intro { color: $color-light-grey; }
   &.htc-grey .contact-cards-panel__heading h2, &.htc-grey .contact-cards-panel__intro { color: $color-grey; }
   &.htc-gold .contact-cards-panel__heading h2, &.htc-gold .contact-cards-panel__intro { color: $color-ght-gold; }
-  &.htc-navy .contact-cards-panel__heading h2, &.htc-navy .contact-cards-panel__intro { color: $color-ght-teal; }
+  &.htc-navy .contact-cards-panel__heading h2, &.htc-navy .contact-cards-panel__intro { color: $color-ght-heading; }
   &.htc-dark .contact-cards-panel__heading h2, &.htc-dark .contact-cards-panel__intro { color: $color-ght-dark; }
   &.htc-charcoal .contact-cards-panel__heading h2, &.htc-charcoal .contact-cards-panel__intro { color: $color-ght-charcoal; }
 
@@ -78,7 +78,7 @@
 
   &__card-heading {
     margin: 0;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(26);
     font-weight: 300;
@@ -176,7 +176,7 @@
 
   &__policy-heading {
     margin: 0 0 20px;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(30);
     font-weight: 300;

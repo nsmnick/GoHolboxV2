@@ -22,9 +22,9 @@
       radial-gradient(circle at top left, rgba($color-ght-teal, 0.45), transparent 42%),
       linear-gradient(
         145deg,
-        lighten($color-ght-teal, 14%) 0%,
-        $color-ght-teal 48%,
-        darken($color-ght-teal, 18%) 100%
+        $color-ght-teal 0%,
+        mix($color-ght-teal, $color-ght-heading, 50%) 55%,
+        $color-ght-heading 100%
       );
     box-shadow: 0 12px 30px rgba($color-ght-dark, 0.18);
 
@@ -38,16 +38,11 @@
     margin-bottom: 26px;
 
     h2 {
+      @include panel-heading;
       margin: 0 0 7px;
       color: $color-white;
       font-family: get-font-family("main");
-      font-size: to-rem(28);
-      font-weight: 300;
       line-height: 1.2;
-
-      @include bp(lap) {
-        font-size: to-rem(32);
-      }
     }
   }
 

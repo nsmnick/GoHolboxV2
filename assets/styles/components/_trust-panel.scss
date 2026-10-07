@@ -71,10 +71,13 @@
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba($color-ght-dark, 0.09);
 
+    // Top-aligned (not vertically centred) so icons, headings and text line
+    // up across a row even when one card's heading/text wraps onto an extra
+    // line — centring would shift that card's icon up out of line.
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
 
     transition:
@@ -117,10 +120,12 @@
 
   &__title {
     display: block;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(18);
-    font-weight: 700;
+    // 600 rather than 700 — Montserrat has no 700 face loaded
+    // (setup/fonts/montserrat.scss), so 700 rendered as the heavier 800.
+    font-weight: 600;
     line-height: 1.3;
 
     @media (max-width: 480px) {

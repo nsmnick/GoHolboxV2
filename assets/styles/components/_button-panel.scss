@@ -6,7 +6,7 @@
   text-align: center;
 
   &__heading {
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     font-family: get-font-family("main");
     line-height: 1.3;
     @include panel-heading;
@@ -31,7 +31,7 @@
   &.htc-light-grey &__heading, &.htc-light-grey &__intro { color: $color-light-grey; }
   &.htc-grey &__heading, &.htc-grey &__intro { color: $color-grey; }
   &.htc-gold &__heading, &.htc-gold &__intro { color: $color-ght-gold; }
-  &.htc-navy &__heading, &.htc-navy &__intro { color: $color-ght-teal; }
+  &.htc-navy &__heading, &.htc-navy &__intro { color: $color-ght-heading; }
   &.htc-dark &__heading, &.htc-dark &__intro { color: $color-ght-dark; }
   &.htc-charcoal &__heading, &.htc-charcoal &__intro { color: $color-ght-charcoal; }
 
