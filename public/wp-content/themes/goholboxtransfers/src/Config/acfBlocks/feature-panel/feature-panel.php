@@ -15,7 +15,7 @@ if (!$preview_popup_image && !$hide_panel) {
 ?>
 
 <section class="feature-panel <?php echo $generic_block_settings_classes; ?>">
-    <div class="container animate fade-up">
+    <div class="container <?php echo $generic_container_class; ?> animate fade-up">
         <div class="feature-panel__grid<?php echo esc_attr($count_modifier); ?>">
             <?php foreach ($features as $feature) :
                 $image_id   = $feature['feature_image'] ?? null;

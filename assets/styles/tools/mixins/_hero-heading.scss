@@ -1,0 +1,10 @@
+// Shared hero (page title) typography — size/weight/spacing only. Matches
+// the Destination page hero title (.cpt-single__title), which the client
+// picked as the reference; colour, shadow and positioning stay with each
+// hero, since those depend on what the title sits over.
+@mixin hero-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}

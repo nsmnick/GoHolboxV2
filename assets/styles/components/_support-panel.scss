@@ -1,6 +1,77 @@
 .support-panel {
   padding: 60px 0;
 
+  // Panel Settings (Background Colour, padding) — without this the CMS
+  // Background Colour field had no visible effect on this panel.
+  @include panel-settings-modifiers;
+
+  // Text below is tuned for a light background — swap to light-on-dark on
+  // the dark Background Colour options so it stays readable. The search
+  // box and topic nav pills keep their own solid backgrounds, so only the
+  // text sitting directly on the panel needs swapping.
+  &.bgc-navy,
+  &.bgc-dark,
+  &.bgc-charcoal {
+    .support-panel__heading,
+    .support-panel__topic-heading,
+    .support-panel__no-results {
+      color: $color-white;
+    }
+
+    .support-panel__intro,
+    .support-panel__topic-intro {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .faq-item {
+      border-top-color: rgba(255, 255, 255, 0.15);
+
+      &:last-child {
+        border-bottom-color: rgba(255, 255, 255, 0.15);
+      }
+
+      &__question {
+        color: $color-white;
+      }
+
+      &__content {
+        color: rgba(255, 255, 255, 0.8);
+
+        a {
+          color: $color-white;
+        }
+
+        // Answers are block content, so they can contain their own panels/
+        // cards with a light background — e.g. a Text Panel block whose card
+        // is bgc-white, or an inline-styled callout box. The white text above
+        // would inherit into those and disappear (white on white), so restore
+        // dark text inside any light-backgrounded element. Dark-backgrounded
+        // nested cards (bgc-navy/dark/charcoal) keep the white.
+        :is(.bgc-white, .bgc-light-grey, .bgc-grey, .bgc-gold, [style*="background"]) {
+          color: $color-ght-charcoal;
+
+          a {
+            color: $color-ght-heading;
+
+            &:hover {
+              color: $color-ght-gold;
+            }
+          }
+        }
+      }
+    }
+
+    .support-panel__show-more {
+      border-color: $color-white;
+      color: $color-white;
+
+      &:hover {
+        background: $color-white;
+        color: $color-ght-heading;
+      }
+    }
+  }
+
   &__heading {
     color: $color-ght-heading;
     text-align: center;

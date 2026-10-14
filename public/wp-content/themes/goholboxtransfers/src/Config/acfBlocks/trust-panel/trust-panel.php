@@ -12,7 +12,8 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
 ?>
 
     <section class="trust-panel <?php echo $generic_block_settings_classes; ?>">
-        <div class="trust-panel__container animate fade-up">
+        <?php // Fixed design widths by default; the shared .container + size when one is picked. ?>
+        <div class="trust-panel__container <?php echo $generic_container_class ? 'container ' . esc_attr($generic_container_class) : ''; ?> animate fade-up">
             <div class="trust-panel__grid">
                 <?php foreach ($items as $item) :
                     $icon     = $item['icon'] ?? null;

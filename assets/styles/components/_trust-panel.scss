@@ -4,6 +4,15 @@
   // Fixed widths matching the supplied design exactly — deliberately not
   // using the shared .container/container_size object, since those max-
   // widths (800/1100/1300px) don't match the 1120/620px given here.
+  // A Panel Settings Container Size was picked — the template adds the
+  // shared .container + size class, so hand width over to that.
+  &__container.container {
+    width: auto;
+
+    @media (max-width: 700px) { width: auto; }
+    @media (max-width: 480px) { width: auto; }
+  }
+
   &__container {
     width: min(1120px, calc(100% - 40px));
     margin: 72px auto 0;

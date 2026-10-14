@@ -14,7 +14,6 @@
 @import "html-panel";
 @import "airport-slider";
 @import "prices";
-@import "activities-slider";
 @import "image-slider-panel";
 @import "price-table-panel";
 @import "two-column-panel";
@@ -31,6 +30,7 @@
 @import "icon-panel";
 @import "news-gallery-panel";
 @import "planyo-booking-panel";
+@import "planyo-booking-form";
 @import "social-panel";
 @import "support-panel";
 @import "trust-panel";
@@ -46,3 +46,6 @@
 @import "forms";
 @import "socials";
 @import "editor-blocks";
+
+// Last, so its Container Size overrides follow every block partial.
+@import "container-sizes";

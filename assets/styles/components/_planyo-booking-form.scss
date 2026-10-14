@@ -1,0 +1,494 @@
+// Planyo Booking Form — Planyo's full reservation form (see
+// planyo-booking-form.php). booking-utils.js writes the form into
+// #planyo_content in our DOM, so it can be restyled here; everything is
+// scoped under .planyo-booking-form so nothing leaks onto the price-preview
+// widget (.planyo-booking-panel) or anything else.
+//
+// Same approach as _planyo-booking-panel.scss: Planyo's Bootstrap + scheme
+// stylesheets load *after* ours (their <link> tags sit inside the embed),
+// so on equal specificity theirs would win by source order — hence the
+// deliberate !important throughout. Selectors target Planyo's own markup
+// (reservation_steps, form-group, control-label, form-control, btn-primary,
+// help-block, bg-warning…), which we don't control.
+
+.planyo-booking-form {
+  padding: 40px 0;
+
+  @include bp(lap) {
+    padding: 64px 0;
+  }
+
+  // Panel Settings "Background Colour" — the white card below then stands
+  // out against it rather than sitting white-on-white.
+  @include panel-colour-modifiers;
+
+  &__card {
+    max-width: 960px;
+    margin: 0 auto;
+    background: $color-white;
+    border: 1px solid rgba($color-ght-heading, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba($color-ght-dark, 0.14);
+    padding: 28px 18px;
+
+    @include bp(lap) {
+      padding: 44px 48px;
+    }
+  }
+
+  #planyo_content {
+    font-family: get-font-family("main") !important;
+    font-size: to-rem(15) !important;
+    color: $color-ght-charcoal !important;
+    line-height: 1.5 !important;
+
+    * {
+      box-sizing: border-box !important;
+      font-family: inherit !important;
+    }
+
+    // Bootstrap's own wrappers add side padding/max-widths that double up
+    // with our card's padding.
+    .container,
+    .container-fluid {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  // ─── Step indicator (1 Reservation details → 4 Completed) ───────────────
+
+  .reservation_steps {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin: 0 0 32px !important;
+    padding: 0 0 24px !important;
+    border-bottom: 1px solid rgba($color-ght-heading, 0.15) !important;
+  }
+
+  .reservation_step {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-align: center !important;
+    float: none !important;
+    width: auto !important;
+  }
+
+  .reservation_step_img {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: $color-light-grey !important;
+    border: 2px solid $color-grey !important;
+    background-image: none !important;
+  }
+
+  .reservation_step_img_text {
+    font-size: to-rem(14) !important;
+    font-weight: 600 !important;
+    color: $color-ght-charcoal !important;
+  }
+
+  .reservation_step_name {
+    font-size: to-rem(12) !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    color: $color-dark-grey !important;
+  }
+
+  .reservation_step_current {
+    .reservation_step_img {
+      background: $color-ght-heading !important;
+      border-color: $color-ght-heading !important;
+    }
+
+    .reservation_step_img_text {
+      color: $color-white !important;
+    }
+
+    .reservation_step_name {
+      color: $color-ght-heading !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  // Language picker — Planyo offers ~40 languages; keep it available but
+  // small and out of the way rather than a full-width form field.
+  .language {
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin: 0 0 16px !important;
+
+    select {
+      width: auto !important;
+      font-size: to-rem(13) !important;
+      padding: 6px 30px 6px 10px !important;
+    }
+  }
+
+  // ─── Section headings & intro text ──────────────────────────────────────
+
+  h2,
+  h3 {
+    color: $color-ght-heading !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+  }
+
+  h3 {
+    font-size: to-rem(20) !important;
+    margin: 28px 0 16px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid rgba($color-ght-heading, 0.15) !important;
+
+    @include bp(lap) {
+      font-size: to-rem(22) !important;
+    }
+  }
+
+  h2 {
+    font-size: to-rem(24) !important;
+    margin: 0 0 12px !important;
+  }
+
+  .lead {
+    font-size: to-rem(16) !important;
+    font-weight: 400 !important;
+    color: $color-ght-charcoal !important;
+    margin: 0 0 16px !important;
+
+    &:empty {
+      display: none !important;
+    }
+  }
+
+  // ─── Fields ─────────────────────────────────────────────────────────────
+
+  .form-group {
+    margin-bottom: 18px !important;
+  }
+
+  .control-label {
+    display: block !important;
+    float: none !important;
+    width: auto !important;
+    text-align: left !important;
+    font-size: to-rem(12) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: $color-ght-charcoal !important;
+    margin-bottom: 6px !important;
+    padding-top: 0 !important;
+
+    em {
+      font-style: normal !important;
+      color: $color-ght-gold !important;
+      margin-left: 2px !important;
+    }
+  }
+
+  .form-control {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    background-color: $color-light-grey !important;
+    border: 1px solid $color-grey !important;
+    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    font-size: to-rem(15) !important;
+    line-height: 1.3 !important;
+    color: $color-ght-dark !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      outline: none !important;
+      border-color: $color-ght-gold !important;
+      background-color: $color-white !important;
+    }
+  }
+
+  // Read-only values Planyo prints in place of a field (e.g. a fixed
+  // duration) — plain text, not a box.
+  .form-control-static {
+    padding: 4px 0 !important;
+    color: $color-ght-dark !important;
+    font-weight: 500 !important;
+  }
+
+  select.form-control {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%231b161c' d='M6 8 0 0h12z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 10px 7px !important;
+    padding-right: 36px !important;
+    cursor: pointer;
+  }
+
+  textarea.form-control {
+    min-height: 90px !important;
+    resize: vertical;
+  }
+
+  .help-block {
+    display: block !important;
+    margin: 6px 0 0 !important;
+    font-size: to-rem(13) !important;
+    line-height: 1.45 !important;
+    color: $color-dark-grey !important;
+
+    &:empty {
+      display: none !important;
+    }
+  }
+
+  // Date field + calendar button
+  .input-group {
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important;
+
+    .form-control {
+      flex: 1 1 auto !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-right: none !important;
+    }
+  }
+
+  .input-group-addon,
+  .input-group-append {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    padding: 0 14px !important;
+    background: $color-ght-heading !important;
+    border: 1px solid $color-ght-heading !important;
+    border-radius: 0 8px 8px 0 !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: $color-ght-gold !important;
+      border-color: $color-ght-gold !important;
+    }
+
+    .input-group-text {
+      display: flex !important;
+      align-items: center !important;
+      background: transparent !important;
+      border: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
+  .input-group-append .input-group-addon {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  .planyo-cal-icon {
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+    position: relative;
+    background: none !important;
+
+    // Same white calendar glyph as the widget, in case Planyo's own
+    // scheme-CSS icon fails to load.
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M3 9h18M8 3v4M16 3v4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .checkbox {
+    margin: 0 0 12px !important;
+
+    label {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 10px !important;
+      font-weight: 400 !important;
+      color: $color-ght-charcoal !important;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      position: static !important;
+      margin: 3px 0 0 !important;
+      width: 18px !important;
+      height: 18px !important;
+      accent-color: $color-ght-heading;
+      flex: 0 0 auto !important;
+    }
+  }
+
+  // Planyo marks validated fields with a coloured status border — keep it,
+  // just rounded to match our inputs.
+  .with-status-border {
+    border-radius: 8px !important;
+  }
+
+  // ─── Price summary ──────────────────────────────────────────────────────
+
+  .pricebox,
+  .price_info_div {
+    background: rgba($color-ght-heading, 0.06) !important;
+    border: 1px solid rgba($color-ght-heading, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 20px 22px !important;
+    margin: 8px 0 20px !important;
+    color: $color-ght-charcoal !important;
+
+    h2 {
+      font-size: to-rem(18) !important;
+      margin: 0 0 8px !important;
+    }
+
+    strong,
+    b {
+      color: $color-ght-heading !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  // Planyo's nested price box uses a Bootstrap jumbotron — flatten it so it
+  // doesn't add a second grey slab inside our tinted box.
+  .jumbotron {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  // ─── Messages ───────────────────────────────────────────────────────────
+
+  .bg-warning,
+  .bg-danger,
+  #res_error_msg,
+  #res_ok_msg {
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    font-size: to-rem(14) !important;
+    line-height: 1.45 !important;
+
+    &:empty {
+      display: none !important;
+    }
+  }
+
+  .bg-warning {
+    background: rgba($color-ght-gold, 0.15) !important;
+    border: 1px solid rgba($color-ght-gold, 0.45) !important;
+    color: $color-ght-dark !important;
+  }
+
+  .bg-danger,
+  #res_error_msg:not(:empty) {
+    background: #fdecec !important;
+    border: 1px solid #f3b9b9 !important;
+    color: #8a1f1f !important;
+  }
+
+  #res_ok_msg:not(:empty) {
+    background: rgba($color-ght-heading, 0.08) !important;
+    border: 1px solid rgba($color-ght-heading, 0.25) !important;
+    color: $color-ght-heading !important;
+  }
+
+  // ─── Buttons (« Previous / Next » / Make reservation) ───────────────────
+  // Same look as the site's .button (elements/_button.scss): gold gradient,
+  // darker-gold hover, regular weight — with dark grey text rather than
+  // black, matching the Pricing Panel and Destination Slider buttons.
+
+  .btn,
+  input[type="submit"],
+  input[type="button"] {
+    display: inline-block !important;
+    width: auto !important;
+    font-size: to-rem(16) !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    color: $color-ght-charcoal !important;
+    border: solid 2px $color-ght-gold !important;
+    background: linear-gradient(135deg, lighten($color-ght-gold, 8%), darken($color-ght-gold, 6%)) !important;
+    border-radius: 6px !important;
+    padding: 13px 24px 14px !important;
+    margin: 4px 8px 4px 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    cursor: pointer;
+    transition: 0.15s all ease-in-out, 0.2s transform ease-out, 0.2s box-shadow ease-out;
+
+    &:hover,
+    &:focus {
+      background: linear-gradient(135deg, darken($color-ght-gold, 8%), darken($color-ght-gold, 16%)) !important;
+      border-color: darken($color-ght-gold, 10%) !important;
+      color: $color-ght-charcoal !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:hover,
+      &:focus {
+        transform: none;
+      }
+    }
+  }
+
+  // « Previous is the secondary action — outlined rather than filled.
+  input[value*="Previous"],
+  input[value*="«"] {
+    background: transparent !important;
+    border-color: $color-ght-charcoal !important;
+
+    &:hover,
+    &:focus {
+      background: $color-ght-charcoal !important;
+      border-color: $color-ght-charcoal !important;
+      color: $color-white !important;
+    }
+  }
+
+  // "Powered by Planyo" — keep (licence), but as quiet fine print.
+  .poweredby {
+    margin-top: 24px !important;
+    font-size: to-rem(12) !important;
+    color: $color-dark-grey !important;
+    text-align: center !important;
+
+    a {
+      color: inherit !important;
+      font-weight: 400 !important;
+    }
+  }
+}
+
+// Planyo's fixed-position cart icon sits outside the section (it's
+// position:fixed on the page) — keep it above our panels' stacking.
+#planyo_cart_widget.fixed_position {
+  z-index: 50 !important;
+}

@@ -97,6 +97,15 @@ class Utils
         return $generic_block_class;
     }
 
+    // URL of the site's Booking page (slug "booking"), which holds the full
+    // Planyo booking form. Falls back to /booking/ if the page is missing.
+    public static function get_booking_page_url()
+    {
+        $page = get_page_by_path('booking');
+
+        return $page ? get_permalink($page) : home_url('/booking/');
+    }
+
     public static function get_container_size_class($generic_block_settings)
     {
         $size = isset($generic_block_settings['container_size']) ? $generic_block_settings['container_size'] : '';

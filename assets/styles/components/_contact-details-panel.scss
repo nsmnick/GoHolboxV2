@@ -17,7 +17,7 @@
 
     p {
       font-size: to-rem(20);
-      color: getcolor("dark-grey");
+      color: getcolor("ght-charcoal");
       margin-bottom: 20px;
     }
 
@@ -42,7 +42,7 @@
   &__address {
     text-align: center;
     font-size: to-rem(20);
-    color: getcolor("dark-grey");
+    color: getcolor("ght-charcoal");
     margin-bottom: 20px;
 
     label {
@@ -76,7 +76,7 @@
     text-align: center;
     margin-top: 30px;
     font-size: to-rem(16);
-    color: getcolor("dark-grey");
+    color: getcolor("ght-charcoal");
   }
 
   &__socials {
@@ -88,7 +88,7 @@
     text-transform: uppercase;
     font-size: to-rem(12);
     font-weight: 700;
-    color: getcolor("dark-grey");
+    color: getcolor("ght-charcoal");
     margin-bottom: 10px;
   }
 

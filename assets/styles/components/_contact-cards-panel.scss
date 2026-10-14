@@ -14,7 +14,7 @@
   }
 
   &__intro {
-    color: $color-dark-grey;
+    color: $color-ght-charcoal;
     font-size: to-rem(18);
     line-height: 1.8;
 
@@ -81,7 +81,7 @@
     color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(26);
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.25;
   }
 
@@ -95,7 +95,7 @@
 
   &__card-text {
     margin-bottom: 22px;
-    color: $color-dark-grey;
+    color: $color-ght-charcoal;
     font-size: to-rem(16);
     line-height: 1.8;
 
@@ -109,7 +109,7 @@
     padding: 0;
     list-style: none;
     text-align: left;
-    color: $color-dark-grey;
+    color: $color-ght-charcoal;
     line-height: 2;
 
     li {
@@ -120,7 +120,7 @@
         content: "\2713";
         position: absolute;
         left: 0;
-        color: $color-ght-teal;
+        color: $color-ght-heading;
         font-weight: 700;
       }
     }
@@ -137,7 +137,7 @@
     flex-direction: column;
     gap: 6px;
     text-align: left;
-    color: $color-dark-grey;
+    color: $color-ght-charcoal;
     font-size: to-rem(15);
     line-height: 1.7;
   }
@@ -179,13 +179,13 @@
     color: $color-ght-heading;
     font-family: get-font-family("main");
     font-size: to-rem(30);
-    font-weight: 300;
+    font-weight: 600;
   }
 
   &__policy-text {
     max-width: 700px;
     margin: 0 auto;
-    color: $color-dark-grey;
+    color: $color-ght-charcoal;
     font-size: to-rem(16);
     line-height: 1.8;
 

@@ -25,10 +25,8 @@
 
   &__title {
     color: $color-white;
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    font-weight: 800;
+    @include hero-heading;
     margin: 0 0 8px;
-    letter-spacing: -0.02em;
   }
 
   &__subtitle {

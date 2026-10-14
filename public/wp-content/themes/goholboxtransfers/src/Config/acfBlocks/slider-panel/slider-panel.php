@@ -40,6 +40,14 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
         <?php endif; ?>
     </div>
 
+    <?php
+    // Full-width carousel by default; when a Panel Settings Container Size is
+    // picked, the cards sit inside that container too (not just the intro),
+    // so the setting visibly narrows the slider.
+    if ($generic_container_class) : ?>
+    <div class="container <?php echo esc_attr($generic_container_class); ?>">
+    <?php endif; ?>
+
     <div class="airport-slider__track">
         <div class="airport-swiper swiper">
             <div class="swiper-wrapper airport-slider__wrapper">
@@ -120,6 +128,10 @@ if (!$is_preview && !$hide_panel && !$preview_popup_image) {
             </button>
         </div>
     </div>
+
+    <?php if ($generic_container_class) : ?>
+    </div>
+    <?php endif; ?>
 </section>
 
 <?php

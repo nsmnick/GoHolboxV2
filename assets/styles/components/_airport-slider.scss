@@ -22,6 +22,13 @@
   &.bgc-gold {
     --slider-nav-bg: #{$color-ght-teal};
     --slider-nav-icon: #{$color-white};
+
+    // Intro text dark grey on the light backgrounds (client request); it
+    // stays light on the panel's default teal and the dark options, where
+    // dark grey wouldn't be readable.
+    .airport-slider__subheading {
+      color: $color-ght-charcoal;
+    }
   }
 
   &__intro {
@@ -45,15 +52,15 @@
   }
 
   // Explicit CMS "Heading Colour" choice, overriding the default heading
-  // colour when an editor deliberately picks one. The subheading picks up
-  // the same colour as the heading rather than getting its own field.
-  &.htc-white .airport-slider__heading, &.htc-white .airport-slider__subheading { color: $color-white; }
-  &.htc-light-grey .airport-slider__heading, &.htc-light-grey .airport-slider__subheading { color: $color-light-grey; }
-  &.htc-grey .airport-slider__heading, &.htc-grey .airport-slider__subheading { color: $color-grey; }
-  &.htc-gold .airport-slider__heading, &.htc-gold .airport-slider__subheading { color: $color-ght-gold; }
-  &.htc-navy .airport-slider__heading, &.htc-navy .airport-slider__subheading { color: $color-ght-heading; }
-  &.htc-dark .airport-slider__heading, &.htc-dark .airport-slider__subheading { color: $color-ght-dark; }
-  &.htc-charcoal .airport-slider__heading, &.htc-charcoal .airport-slider__subheading { color: $color-ght-charcoal; }
+  // colour when an editor deliberately picks one. Heading only — the intro
+  // keeps its own colour (dark grey on light backgrounds) whatever is picked.
+  &.htc-white .airport-slider__heading { color: $color-white; }
+  &.htc-light-grey .airport-slider__heading { color: $color-light-grey; }
+  &.htc-grey .airport-slider__heading { color: $color-grey; }
+  &.htc-gold .airport-slider__heading { color: $color-ght-gold; }
+  &.htc-navy .airport-slider__heading { color: $color-ght-heading; }
+  &.htc-dark .airport-slider__heading { color: $color-ght-dark; }
+  &.htc-charcoal .airport-slider__heading { color: $color-ght-charcoal; }
 
   // ─── Track ────────────────────────────────────────────────────────────────
 
@@ -76,8 +83,14 @@
 
   // ─── Scale cascade ────────────────────────────────────────────────────────
 
+  // Each slide is a size container, so the card inside sizes its text,
+  // spacing and shape from its own width (cqi = 1% of the slide's width)
+  // rather than the viewport. Cards range from ~190px (a Small Container Size,
+  // 3 per view) to 500px+ (full-width carousel on a wide screen); each
+  // clamp()'s max is the original size, so large cards look as they did.
   &__slide {
     flex-shrink: 0;
+    container-type: inline-size;
 
     .airport-slider__card {
       transform-origin: center center;
@@ -102,7 +115,7 @@
 
   &__card {
     position: relative;
-    border-radius: 16px;
+    border-radius: clamp(10px, 4.5cqi, 16px);
     overflow: hidden;
     aspect-ratio: 16 / 10;
 
@@ -144,12 +157,12 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 28px 24px 24px;
-      gap: 8px;
+      padding: clamp(12px, 7cqi, 28px) clamp(12px, 6cqi, 24px) clamp(12px, 6cqi, 24px);
+      gap: clamp(3px, 2cqi, 8px);
     }
 
     &-name {
-      font-size: to-rem(26);
+      font-size: clamp(0.9375rem, 6.5cqi, 1.625rem);
       font-weight: 600;
       line-height: 1.1;
       color: $color-white;
@@ -158,7 +171,7 @@
     }
 
     &-heading {
-      font-size: to-rem(13);
+      font-size: clamp(0.5625rem, 3.2cqi, 0.8125rem);
       font-weight: 600;
       color: $color-ght-gold;
       text-transform: uppercase;
@@ -171,7 +184,7 @@
     }
 
     &-desc {
-      font-size: to-rem(13);
+      font-size: clamp(0.6875rem, 3.2cqi, 0.8125rem);
       line-height: 1.55;
       color: rgba(255, 255, 255, 0.8);
       margin: 4px 0 0;
@@ -181,11 +194,14 @@
       -webkit-box-orient: vertical;
     }
 
-    &-btn {
+    // Doubled class for specificity over the site-wide `a.button` size
+    // rules (elements/_button.scss), which otherwise keep the card button at
+    // full desktop size however small the card is.
+    &-btn.airport-slider__card-btn {
       align-self: flex-start;
-      font-size: to-rem(12);
-      padding: 8px 18px;
-      margin-top: 4px;
+      font-size: clamp(0.6875rem, 3cqi, 0.75rem);
+      padding: clamp(6px, 2cqi, 8px) clamp(12px, 4.5cqi, 18px);
+      margin-top: clamp(2px, 1cqi, 4px);
 
       // Dark grey rather than the default black text on the gold gradient
       // button. The white-outline and teal variants set their own.
@@ -195,6 +211,18 @@
           color: $color-ght-charcoal;
         }
       }
+    }
+  }
+
+  // Narrow cards (a smaller Container Size): a taller shape so the name,
+  // text and button still fit over the image, and a shorter description.
+  @container (max-width: 320px) {
+    .airport-slider__card {
+      aspect-ratio: 4 / 5;
+    }
+
+    .airport-slider__card-desc {
+      -webkit-line-clamp: 2;
     }
   }
 

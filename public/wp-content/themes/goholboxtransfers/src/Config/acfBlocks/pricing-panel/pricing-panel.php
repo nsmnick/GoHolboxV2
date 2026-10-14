@@ -48,7 +48,7 @@ if (!$preview_popup_image && !$hide_panel) {
                 <div class="pricing-panel__card">
                     <?php if ($image_id) : ?>
                         <div class="pricing-panel__card-image">
-                            <?php echo wp_get_attachment_image($image_id, 'medium', false, ['loading' => 'lazy']); ?>
+                            <?php echo wp_get_attachment_image($image_id, 'medium_large', false, ['loading' => 'lazy']); ?>
                         </div>
                     <?php endif; ?>
 

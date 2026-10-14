@@ -88,9 +88,8 @@
     font-family: get-font-family("main");
     color: $color-white;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
-    line-height: 1.15;
-    letter-spacing: -0.3px;
-    @include panel-heading;
+    @include hero-heading;
+    margin: 0 0 16px;
   }
 
   &__intro {

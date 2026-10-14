@@ -127,6 +127,10 @@
     img {
       display: block;
       width: 100%;
+      // height:auto is what lets aspect-ratio take effect — without it the
+      // <img>'s own height attribute (e.g. 600 on a 600×600 upload) wins,
+      // and the image renders far taller than the card's 16:10 crop.
+      height: auto;
       aspect-ratio: 16 / 10;
       object-fit: cover;
     }
@@ -139,16 +143,20 @@
   &.scrolled {
     .pricing-panel__grid--three .pricing-panel__card {
       @include bp(lap) {
+        // The outer cards shrink rather than the middle one growing — a
+        // scale() above 1 makes the browser stretch the card's rendered
+        // pixels, which left the middle card's text and image visibly soft.
+        // Shrinking to 0.9 keeps the same size difference the old
+        // 0.94 / 1.04 pairing gave, with the middle card at its true size.
         &:first-child {
-          transform: translateX(36px) scale(0.94) rotateY(-6deg);
+          transform: translateX(44px) scale(0.9) rotateY(-6deg);
         }
 
         &:last-child {
-          transform: translateX(-36px) scale(0.94) rotateY(6deg);
+          transform: translateX(-44px) scale(0.9) rotateY(6deg);
         }
 
         &:not(:first-child):not(:last-child) {
-          transform: scale(1.04);
           z-index: 2;
           box-shadow: 0 10px 32px rgba(0, 0, 0, 0.16);
         }
@@ -179,7 +187,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: $color-ght-teal;
+    color: $color-ght-heading;
     margin: 0 0 20px;
     padding-bottom: 14px;
     position: relative;
@@ -213,6 +221,9 @@
 
   &__card-price-note {
     display: block;
+    // Sits inside &__card-price, so undo its nowrap — the price itself
+    // stays on one line, but the note wraps within the card.
+    white-space: normal;
     margin-top: 4px;
     font-size: to-rem(13);
     font-weight: 400;

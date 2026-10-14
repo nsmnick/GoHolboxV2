@@ -29,19 +29,25 @@ function ensureLoopSlides(swiperEl, slideSelector, minSlides) {
 }
 
 export default function initSliders() {
-  const airportSliderEl = document.querySelector(".airport-swiper");
-  if (airportSliderEl) {
-    ensureLoopSlides(airportSliderEl, ".swiper-slide", 6);
+  // Destination Slider + Activities Slider (the Activities Slider renders
+  // through the same template — see activities-slider.php). Looped per
+  // instance with scoped arrows, since both can sit on one page and a single
+  // global selector would only start the first one / wire every arrow to it.
+  document.querySelectorAll(".airport-swiper").forEach((swiperEl) => {
+    const root = swiperEl.closest(".airport-slider__track");
+    if (!root) return;
 
-    new Swiper(".airport-swiper", {
+    ensureLoopSlides(swiperEl, ".swiper-slide", 6);
+
+    new Swiper(swiperEl, {
       modules: [Navigation],
       slidesPerView: 1,
       centeredSlides: false,
       spaceBetween: 20,
       loop: true,
       navigation: {
-        nextEl: ".airport-slider__btn--next",
-        prevEl: ".airport-slider__btn--prev",
+        nextEl: root.querySelector(".airport-slider__btn--next"),
+        prevEl: root.querySelector(".airport-slider__btn--prev"),
       },
       breakpoints: {
         600: {
@@ -56,7 +62,7 @@ export default function initSliders() {
         },
       },
     });
-  }
+  });
 
   // Image Slider Panel — same Navigation/breakpoints config as the Airport
   // Slider Panel above, looped per-instance so multiple Image Slider Panels
@@ -95,59 +101,60 @@ export default function initSliders() {
     });
   });
 
-  const activitiesSliderEl = document.querySelector(".activities-swiper");
-  if (activitiesSliderEl) {
-    ensureLoopSlides(activitiesSliderEl, ".swiper-slide", 6);
+  // Text and Image Panel's image slider — one Swiper per panel instance,
+  // scoped to that instance's own arrows, dots and "1 / 3" counter (the
+  // markup has all three). Previously a single global selector started only
+  // the first panel on the page, with navigation switched off, so the
+  // arrows did nothing and the counter never changed.
+  document
+    .querySelectorAll(".text-and-image-slider__slides-wrapper")
+    .forEach((wrapperEl) => {
+      const root = wrapperEl.closest(".text-and-image-panel__image");
+      if (!root) return;
 
-    new Swiper(".activities-swiper", {
-      modules: [Navigation],
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      navigation: {
-        nextEl: ".activities-slider__btn--next",
-        prevEl: ".activities-slider__btn--prev",
-      },
-      breakpoints: {
-        769: {
-          slidesPerView: 3,
-          spaceBetween: 24,
+      const counterCurrent = root.querySelector(
+        ".text-and-image-slider__counter-current",
+      );
+
+      new Swiper(wrapperEl, {
+        modules: [Navigation, Autoplay, Pagination, A11y],
+        slidesPerView: 1,
+        spaceBetween: 50,
+        loop: true,
+        wrapperClass: "text-and-image-slider__slides",
+        slideClass: "text-and-image-slider__slide",
+
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
         },
-      },
+        navigation: {
+          nextEl: root.querySelector(".text-and-image-slider__arrow--next"),
+          prevEl: root.querySelector(".text-and-image-slider__arrow--prev"),
+        },
+        pagination: {
+          el: root.querySelector(".text-and-image-slider__pagination"),
+          clickable: true,
+          type: "bullets",
+          bulletActiveClass: "text-and-image-slider__pagination__bullet--active",
+          bulletClass: "text-and-image-slider__pagination__bullet",
+          bulletElement: "div",
+        },
+        // A11y module gives the pagination container a valid role (replacing
+        // the plain <div aria-label="Choose an image">, which PageSpeed
+        // flags as an invalid ARIA host) and labels each bullet "Go to slide N".
+        a11y: {
+          paginationBulletMessage: "Go to slide {{index}}",
+        },
+        on: {
+          slideChange(swiper) {
+            if (counterCurrent) {
+              counterCurrent.textContent = swiper.realIndex + 1;
+            }
+          },
+        },
+      });
     });
-  }
-
-  const imageAndTextSlider = new Swiper(
-    ".text-and-image-slider__slides-wrapper",
-    {
-      modules: [Autoplay, Pagination, A11y],
-      slidesPerView: 1,
-      spaceBetween: 50,
-      loop: true,
-      wrapperClass: "text-and-image-slider__slides",
-      slideClass: "text-and-image-slider__slide",
-
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".text-and-image-slider__pagination",
-        clickable: true,
-        type: "bullets",
-        bulletActiveClass: "text-and-image-slider__pagination__bullet--active",
-        bulletClass: "text-and-image-slider__pagination__bullet",
-        bulletElement: "div",
-      },
-      // A11y module gives the pagination container a valid role (replacing
-      // the plain <div aria-label="Choose an image"> below, which PageSpeed
-      // flags as an invalid ARIA host) and labels each bullet "Go to slide N".
-      a11y: {
-        paginationBulletMessage: "Go to slide {{index}}",
-      },
-      navigation: false,
-    },
-  );
 
   // Service Cards Panel — one independent slider per card, so (unlike the
   // single-selector Swiper calls above) this instantiates one per matching

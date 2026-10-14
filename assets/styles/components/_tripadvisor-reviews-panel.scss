@@ -1,237 +1,213 @@
+// Customer Reviews (tripadvisor-reviews-panel) — static review cards, one per
+// platform. Shared design with Flights Holbox: the file is identical on both
+// sites apart from the brand colour block directly below.
+
+// ── Brand colours (the only per-site lines) ─────────────────────────────────
+$rv-heading: $color-ght-heading;                 // heading
+$rv-text: mix($color-ght-heading, $color-ght-dark, 35%); // quote
+$rv-button-from: $color-ght-heading;             // button gradient
+$rv-button-to: $color-ght-teal;
+$rv-star: $color-ght-gold;
+// ─────────────────────────────────────────────────────────────────────────────
+
 .tripadvisor-reviews-panel {
   padding: 60px 0;
 
-  @include bp(lap) {
-    padding: 80px 0;
-  }
-
   @include panel-settings-modifiers;
 
+  &__intro-wrap {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 32px;
+  }
+
   &__heading {
-    position: relative;
-    padding-bottom: 18px;
-    color: $color-ght-heading;
-    text-align: center;
+    color: $rv-heading;
     @include panel-heading;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 56px;
-      height: 3px;
-      background: $color-ght-gold;
-      border-radius: 2px;
-      transform: translateX(-50%);
-    }
+    margin-bottom: 12px;
   }
 
-  &__widget {
-    // TripAdvisor's own script renders its widget at whatever intrinsic
-    // width its content needs — this just keeps it from stretching edge to
-    // edge on wide desktop layouts, matching how the rest of this panel's
-    // content is centred within .container.
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
+  &__intro {
+    color: $color-ght-charcoal;           // dark grey
+    font-size: to-rem(15);
+    line-height: 1.6;
 
-    // TripAdvisor's widget root is a plain block-level <div> — text-align
-    // above only centres inline content, so the block itself needs its own
-    // margin:auto to actually sit centred rather than flush left within
-    // this wrapper. Targets whichever variant's root div is rendered here
-    // without depending on its exact TripAdvisor-generated id.
-    > div {
-      margin: 0 auto;
-    }
-
-    // The outer div above is really just an inert shell TripAdvisor's script
-    // hangs an id on — the actual visible card it renders is this nested
-    // .cdsROW element (a fixed-width block with its own margin:0), shared
-    // across every TripAdvisor CDS widget type, which is why centring the
-    // outer shell alone didn't visibly do anything.
-    .cdsROW {
-      margin: 0 auto;
-    }
+    p { margin: 0; }
   }
 
-  // The Ratings Summary widget is a single compact card, not a wide
-  // scrolling carousel — the same 900px cap as the default variant leaves
-  // it looking lost in too much empty space either side.
-  &--ratings_only &__widget {
-    max-width: 420px;
-
-    // TripAdvisor's own CSS for this widget (static.tacdn.com) carries no
-    // !important anywhere, and its rating "bubbles" are an icon font sized
-    // via font-size:inherit rather than a fixed-resolution sprite image —
-    // both scale cleanly, so this rebuilds the card at a larger size in our
-    // own card language (matches .trust-panel__card) instead of TripAdvisor's
-    // cramped 136px default.
-    .cdsROW {
-      width: 260px !important;
-      padding: 28px 24px 24px !important;
-      background: $color-white !important;
-      border: 1px solid rgba($color-ght-teal, 0.1) !important;
-      border-radius: 16px !important;
-      box-shadow: 0 12px 30px rgba($color-ght-dark, 0.09) !important;
-    }
-
-    .cdsLocName {
-      padding-bottom: 14px !important;
-
-      // TripAdvisor's base CSS underlines every link in the widget by
-      // default — overridden here to read as a heading (this site's own
-      // font, no underline) rather than a plain inline text link.
-      a {
-        color: $color-ght-teal !important;
-        font-family: get-font-family("main") !important;
-        font-size: to-rem(20) !important;
-        font-weight: 700 !important;
-        text-decoration: none !important;
-        transition: color 0.2s ease;
-
-        &:hover {
-          color: $color-ght-gold !important;
-          text-decoration: none !important;
-        }
-      }
-    }
-
-    .cdsRating {
-      font-size: to-rem(16) !important;
-      color: $color-ght-charcoal !important;
-
-      .ui_bubble_rating {
-        font-size: 26px !important;
-      }
-    }
-
-    .logo img {
-      width: 150px !important;
-      max-width: 150px !important;
-      padding-top: 10px !important;
-    }
-  }
-
-  // The scrolling-reviews widget renders its actual visible card as
-  // #CDSSCROLLINGRAVE, a completely different TripAdvisor widget type from
-  // the ratings-only one above — same "outer shell is centred, the real
-  // card nested inside it isn't" issue, just under a different id, and its
-  // own separate stylesheet (also carries no !important, so fully
-  // overridable the same way).
-  &--scrolling_rave &__widget {
-    #CDSSCROLLINGRAVE {
-      width: 100% !important;
-      max-width: 700px !important;
-      margin: 0 auto !important;
-      padding: 20px 24px !important;
-      background: $color-white !important;
-      border: 1px solid rgba($color-ght-teal, 0.1) !important;
-      border-radius: 16px !important;
-      box-shadow: 0 12px 30px rgba($color-ght-dark, 0.09) !important;
-      font-family: get-font-family("main") !important;
-      font-size: to-rem(15) !important;
-      color: $color-ght-charcoal !important;
-    }
-
-    // TripAdvisor's own bright-green brand tint behind the logo — swapped
-    // for a plain divider so it reads as part of this site instead.
-    .rightBorder {
-      padding: 0 20px 0 0 !important;
-      background: none !important;
-      border-right: 1px solid rgba($color-ght-teal, 0.15) !important;
-
-      img {
-        height: 56px !important;
-        max-width: 110px !important;
-      }
-    }
-
-    marquee {
-      padding: 0 0 0 20px !important;
-    }
-
-    .reviewTitle {
-      color: $color-ght-teal !important;
-      font-size: to-rem(16) !important;
-      font-weight: 700 !important;
-    }
-
-    .reviewContribution {
-      color: $color-ght-charcoal !important;
-    }
-
-    // TripAdvisor's base CSS underlines every link in the widget by
-    // default — overridden to read as this site's own link style.
-    .link a {
-      color: $color-ght-teal !important;
-      font-weight: 700 !important;
-      text-decoration: none !important;
-
-      &:hover {
-        color: $color-ght-gold !important;
-        text-decoration: none !important;
-      }
-    }
-  }
-
-  // Explicit CMS "Heading Colour" choice, overriding the hardcoded navy
-  // default above when an editor deliberately picks one.
+  // Explicit CMS "Heading Colour" choice — heading only.
   &.htc-white &__heading { color: $color-white; }
   &.htc-light-grey &__heading { color: $color-light-grey; }
   &.htc-grey &__heading { color: $color-grey; }
   &.htc-gold &__heading { color: $color-ght-gold; }
-  &.htc-navy &__heading { color: $color-ght-heading; }
+  &.htc-navy &__heading { color: $rv-heading; }
   &.htc-dark &__heading { color: $color-ght-dark; }
   &.htc-charcoal &__heading { color: $color-ght-charcoal; }
 
-  // Wraps &__widget (+ &__google, when a Google Reviews Shortcode is set) —
-  // plain centring by default, side-by-side only under &--split.
-  &__row {
+  // Dark backgrounds — the heading/intro sit on the panel; the cards stay
+  // white so their own text never needs swapping.
+  &.bgc-navy,
+  &.bgc-dark,
+  &.bgc-charcoal {
+    .tripadvisor-reviews-panel__heading,
+    .tripadvisor-reviews-panel__intro {
+      color: $color-white;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 450px;
+    margin: 0 auto;
+
+    @include bp(tab) {
+      &--many {
+        // minmax(0, …) so a longer one-line button can't widen its column.
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 920px;
+        gap: 32px;
+      }
+    }
+  }
+}
+
+// ── Card ─────────────────────────────────────────────────────────────────────
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: $color-white;
+  border-radius: 18px;
+  padding: 26px 28px 24px;
+  box-shadow: 0 6px 24px rgba($color-ght-dark, 0.1);
+  text-align: left;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 38px;
+    margin-bottom: 12px;
+  }
+
+  &__logo-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+
+  &__logo-name {
+    font-size: to-rem(21);
+    font-weight: 500;
+    color: $color-ght-dark;
+    letter-spacing: -0.01em;
+  }
+
+  &__logo-google {
+    display: block;
+    width: auto;
+    height: 36px;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 14px;
+
+    svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+      fill: $rv-star;
+    }
+  }
+
+  &__quote {
+    margin: 0 0 16px;
+    padding: 0;
+    border: 0;
+
+    p {
+      margin: 0;
+      font-size: to-rem(16);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.45;
+      color: $rv-text;
+    }
+  }
+
+  &__meta {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 32px;
+    margin: 0 0 20px;
+    font-size: to-rem(14);
+    line-height: 1.4;
   }
 
-  &--split &__row {
-    @include bp(lap) {
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: center;
-      gap: 40px;
-    }
+  &__name {
+    font-weight: 600;
+    color: $color-ght-charcoal;
   }
 
-  // Overrides both variants' own max-width above — each was tuned to sit
-  // centred alone in the full container, not share a row — this comes
-  // later in the stylesheet so it wins at the same specificity once
-  // &--split is also present.
-  &--split &__widget {
-    @include bp(lap) {
-      flex: 1 1 0;
-      max-width: 480px;
-    }
-  }
 
-  &__google {
+  // Pinned to the bottom so buttons line up across cards of different
+  // quote lengths.
+  &__button {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 12px;
+    box-sizing: border-box;
     width: 100%;
-    max-width: 480px;
+    margin-top: auto;
+    padding: 15px 18px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, $rv-button-from 0%, $rv-button-to 100%);
+    color: $color-white;
+    font-size: to-rem(14);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 
-    @include bp(lap) {
-      flex: 1 1 0;
+    // One line (as designed) once the cards sit side by side; on a phone
+    // the single full-width card is narrow enough that it's allowed to wrap.
+    @include bp(tab) {
+      white-space: nowrap;
     }
 
-    // The Rich Showcase for Google Reviews plugin's own CSS reads this
-    // custom property for its "powered by Google" text (falling back to
-    // #777777, which only hits ~4.46:1 on white — just under WCAG AA's
-    // 4.5:1 minimum) — setting it here overrides the value without having
-    // to fight the plugin's own !important rules.
-    .wp-gr {
-      --powered-color: #{$color-ght-charcoal};
+    svg {
+      flex: 0 0 auto;
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $color-white;
+      text-decoration: none;
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba($color-ght-dark, 0.18);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:hover,
+      &:focus-visible {
+        transform: none;
+      }
     }
   }
 }

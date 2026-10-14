@@ -20,6 +20,10 @@ include __DIR__ . '/../_block-preview.php';
 // own code relies on.
 
 if (!$hide_panel && !$preview_popup_image) {
+    // Where the widget submits to — this site's own Booking page (which
+    // holds the full Planyo Booking Form block), not a hardcoded live URL,
+    // so local/staging/live each send visitors to their own booking page.
+    $booking_url = Theme\Utils::get_booking_page_url();
 ?>
 
 <section class="planyo-booking-panel animate fade-in <?php echo $generic_block_settings_classes; ?>">
@@ -61,7 +65,7 @@ if (!$hide_panel && !$preview_popup_image) {
 #planyo_price_preview_formPST44657 label {display:block;float:none;width:100%}
 form#planyo_price_preview_formPST44657 li.planyo_static_help {margin-left:0px;}
 </style>
-<form id='planyo_price_preview_formPST44657' name='search_form' class='planyo   form-inline' action='https://goholboxtransfers.com/booking/' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="https://goholboxtransfers.com/booking/" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST44657cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
+<form id='planyo_price_preview_formPST44657' name='search_form' class='planyo   form-inline' action='<?php echo esc_url($booking_url); ?>' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="<?php echo esc_url($booking_url); ?>" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST44657cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
         <script type='text/javascript'>
               js_set_event(document.getElementById('one_datePST44657cal'), 'click', 'js_dummy',false);
                       document.first_weekday=1;
@@ -212,7 +216,7 @@ document.picker_preview_sync_priceprev=1;
 #planyo_price_preview_formPST35272 label {display:block;float:none;width:100%}
 form#planyo_price_preview_formPST35272 li.planyo_static_help {margin-left:0px;}
 </style>
-<form id='planyo_price_preview_formPST35272' name='search_form' class='planyo   form-inline' action='https://goholboxtransfers.com/booking/' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="https://goholboxtransfers.com/booking/" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST35272cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
+<form id='planyo_price_preview_formPST35272' name='search_form' class='planyo   form-inline' action='<?php echo esc_url($booking_url); ?>' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="<?php echo esc_url($booking_url); ?>" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST35272cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
         <script type='text/javascript'>
               js_set_event(document.getElementById('one_datePST35272cal'), 'click', 'js_dummy',false);
                       document.first_weekday=1;
@@ -358,7 +362,7 @@ document.picker_preview_sync_priceprev=1;
 #planyo_price_preview_formPST19130 label {display:block;float:none;width:100%}
 form#planyo_price_preview_formPST19130 li.planyo_static_help {margin-left:0px;}
 </style>
-<form id='planyo_price_preview_formPST19130' name='search_form' class='planyo   form-inline' action='https://goholboxtransfers.com/booking/' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="https://goholboxtransfers.com/booking/" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST19130cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
+<form id='planyo_price_preview_formPST19130' name='search_form' class='planyo   form-inline' action='<?php echo esc_url($booking_url); ?>' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="<?php echo esc_url($booking_url); ?>" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST19130cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
         <script type='text/javascript'>
               js_set_event(document.getElementById('one_datePST19130cal'), 'click', 'js_dummy',false);
                       document.first_weekday=1;
@@ -509,7 +513,7 @@ document.picker_preview_sync_priceprev=1;
 #planyo_price_preview_formPST35834 label {display:block;float:none;width:100%}
 form#planyo_price_preview_formPST35834 li.planyo_static_help {margin-left:0px;}
 </style>
-<form id='planyo_price_preview_formPST35834' name='search_form' class='planyo   form-inline' action='https://goholboxtransfers.com/booking/' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="https://goholboxtransfers.com/booking/" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST35834cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
+<form id='planyo_price_preview_formPST35834' name='search_form' class='planyo   form-inline' action='<?php echo esc_url($booking_url); ?>' role='form' method='get'><input type='hidden' value="61399" id='calendar' name='calendar' /><input type='hidden' value="1" id='submitted' name='submitted' /><input type='hidden' value="<?php echo esc_url($booking_url); ?>" id='feedback_url' name='feedback_url' />  <div style='position:absolute;visibility:hidden;z-index:5000;' class='picker_dropdown ' id='one_datePST35834cal' onmousedown='var e=arguments[0] || window.event;e.stopPropagation();' onclick='var e=arguments[0] || window.event;e.stopPropagation();' ></div>
         <script type='text/javascript'>
               js_set_event(document.getElementById('one_datePST35834cal'), 'click', 'js_dummy',false);
                       document.first_weekday=1;

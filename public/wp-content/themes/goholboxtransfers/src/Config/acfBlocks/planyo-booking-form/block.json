@@ -1,0 +1,18 @@
+{
+  "name": "acf/planyo-booking-form",
+  "title": "Planyo Booking Form",
+  "description": "The full Planyo reservation form (price calculator, details and booking request) plus the Planyo cart, restyled to match the site. Place once, on the Booking page — the Planyo Booking Widget submits to it.",
+  "category": "theme",
+  "icon": "<svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='4' y='3' width='16' height='18' rx='2' stroke='#000' stroke-width='2'/><path d='M8 8h8M8 12h8M8 16h5' stroke='#000' stroke-width='2' stroke-linecap='round'/></svg>",
+  "keywords": ["planyo", "booking", "form", "reservation", "calculator"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "planyo-booking-form.php"
+  },
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "align": false,
+    "multiple": false
+  }
+}

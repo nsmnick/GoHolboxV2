@@ -1,0 +1,55 @@
+// Panel Settings "Container Size" — make the choice actually show.
+//
+// Most panels already sit in `.container` + `container--{size}`
+// (objects/_containers.scss), but many also cap their own inner content
+// with a fixed max-width (an intro at 640px, a card at 960px, a grid at
+// 760px…), so picking a size changed nothing visible. When — and only
+// when — a size has been chosen, those inner caps are lifted so the content
+// follows the container. With no size chosen ("default") every panel keeps
+// its original design widths.
+//
+// Per-item sizes are deliberately left alone (individual cards, icon
+// tiles, logos): those are design units, not the panel's content area.
+//
+// Selector specificity (.container.container--x .el = 0,3,0) beats each
+// block's own rule, so this needs no !important and lives in one place
+// rather than being repeated in every block partial.
+
+.container:is(.container--narrow, .container--small, .container--medium, .container--large) {
+  :is(
+    // Intros / headings / paragraphs
+    .airport-slider__subheading,
+    .button-panel__intro,
+    .comparison-panel__paragraph,
+    .contact-cards-panel__heading,
+    .contact-cards-panel__policy,
+    .contact-cards-panel__policy-text,
+    .faq-card-panel__content,
+    .icon-panel__paragraph,
+    .image-slider-panel__intro,
+    .news-gallery-panel__intro,
+    .price-table-panel__note,
+    .pricing-panel__paragraph,
+    .service-cards-panel__heading,
+    .support-panel__intro,
+    .table-panel__intro,
+    .two-column-panel__intro,
+    .two-column-panel__pullout,
+
+    // Main content areas
+    .faq-panel__accordion,
+    .faq-steps-panel__list,
+    .how-to-calculate-panel__card,
+    .icon-panel__grid,
+    .image-column-panel__grid,
+    .planyo-booking-form__card,
+    .planyo-booking-panel__widget,
+    .pricing-panel__grid,
+    .social-panel__inner,
+    .text-column-panel__columns,
+    .two-column-panel__columns,
+    .video-panel__embed
+  ) {
+    max-width: none;
+  }
+}

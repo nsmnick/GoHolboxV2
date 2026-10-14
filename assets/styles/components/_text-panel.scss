@@ -36,17 +36,47 @@
             padding: 56px 64px;
         }
 
-        // Colour/weight/size come from the shared .wysiwyg-container base
-        // (core-components/_wysiwyg.scss) now — this panel only needs its
-        // own margins, tighter than that base's long-form-content spacing,
-        // matching .contact-cards-panel__card-heading/&__intro.
+        // Colour comes from the shared .wysiwyg-container base
+        // (core-components/_wysiwyg.scss) — weight/size/line-height are
+        // overridden below to match .card-panel's tighter, bolder look
+        // (the base's thin 300-weight heading + loose 1.8 line-height body
+        // text reads too airy/spaced-out for this panel's shorter, denser
+        // intro-style copy) — margins stay tighter than the base's
+        // long-form-content spacing, matching
+        // .contact-cards-panel__card-heading/&__intro.
         .wysiwyg-container {
             h1, h2, h3, h4, h5, h6 {
                 margin: 0 0 15px;
+                font-weight: 700;
             }
 
+            // Main headings stay regular weight, like every other panel
+            // heading site-wide (client request) — only the smaller
+            // sub-headings (h3–h6) keep the bolder look above.
+            h1, h2 {
+                font-weight: 400;
+            }
+
+            h2 {
+                font-size: to-rem(24);
+                line-height: 1.25;
+
+                @include bp(lap) {
+                    font-size: to-rem(30);
+                }
+            }
+
+            // Space between paragraphs (a WYSIWYG with several paragraphs
+            // otherwise ran together as one compact block), but none after
+            // the last so the card's own padding stays even.
             p {
-                margin: 0;
+                margin: 0 0 1em;
+                font-size: to-rem(16);
+                line-height: 1.6;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
 

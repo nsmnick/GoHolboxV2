@@ -68,11 +68,8 @@
 
   &__title {
     color: $color-white;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 400;
+    @include hero-heading;
     margin: 0;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
     text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
   }
 
@@ -207,8 +204,10 @@
       border-bottom-color: $color-grey;
     }
 
+    // Teal footer band behind the "All Activities" button, same as the
+    // Destination pages (was dark/black).
     .cpt-single__footer {
-      background: $color-ght-dark;
+      background: $color-ght-teal;
     }
   }
 }
@@ -269,8 +268,7 @@
 
   &__title {
     color: $color-white;
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    font-weight: 700;
+    @include hero-heading;
     margin: 0;
   }
 

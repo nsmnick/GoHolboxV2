@@ -42,6 +42,7 @@ class ACFBlocks
         register_block_type(__DIR__ . '/acfBlocks/icon-panel');
         register_block_type(__DIR__ . '/acfBlocks/news-gallery-panel');
         register_block_type(__DIR__ . '/acfBlocks/planyo-booking-panel');
+        register_block_type(__DIR__ . '/acfBlocks/planyo-booking-form');
         register_block_type(__DIR__ . '/acfBlocks/social-panel');
         register_block_type(__DIR__ . '/acfBlocks/support-panel');
         register_block_type(__DIR__ . '/acfBlocks/trust-panel');
@@ -98,6 +99,7 @@ class ACFBlocks
                     'acf/icon-panel',
                     'acf/news-gallery-panel',
                     'acf/planyo-booking-panel',
+                    'acf/planyo-booking-form',
                     'acf/social-panel',
                     'acf/support-panel',
                     'acf/trust-panel',
